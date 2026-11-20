@@ -61,6 +61,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/aicde-mark.png
+
   # 範例 App 用的開源字型（SIL OFL 1.1，見 fonts/README.md）。
   # 只放拉丁字母；中文字會自動改用 Noto Sans TC 顯示。
   fonts:

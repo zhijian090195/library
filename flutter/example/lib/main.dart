@@ -185,9 +185,9 @@ class _Brand extends StatelessWidget {
         Container(
           width: compact ? 30 : 40,
           height: compact ? 30 : 40,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(color: _coral, borderRadius: BorderRadius.circular(compact ? 8 : 11)),
-          child: Text('A', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w600, fontSize: compact ? 16 : 20, color: Colors.white)),
+          padding: EdgeInsets.all(compact ? 3 : 5),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(compact ? 8 : 11)),
+          child: Image.asset('assets/aicde-mark.png', semanticLabel: 'AICDE'),
         ),
         Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
           const Text('AICDE', style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w600, fontSize: 17, letterSpacing: .3, color: Colors.white, height: 1.2)),

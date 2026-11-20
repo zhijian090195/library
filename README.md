@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/aicde-mark.png" width="96" alt="AICDE"></p>
+
 # AICDE Design Library
 
 AICDE 的設計系統：一套元件、15 種主題，同時提供網頁（純 CSS／JS）、React、Flutter 三個版本，外觀一致。
