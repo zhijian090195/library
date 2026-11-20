@@ -1,11 +1,11 @@
 {
-    "name": "aicde_ui_example",
-    "short_name": "aicde_ui_example",
+    "name": "AICDE UI · Flutter",
+    "short_name": "AICDE UI",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#173f50",
+    "theme_color": "#173f50",
+    "description": "AICDE 元件庫的 Flutter 範例",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
