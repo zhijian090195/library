@@ -13,7 +13,7 @@ AICDE 風格的 Flutter 元件庫，和網頁版（`aicde-ui.css`）、React 版
 dependencies:
   aicde_ui:
     git:
-      url: https://github.com/zhijian090195/design.git
+      url: https://github.com/zhijian090195/library.git
       path: flutter
 ```
 

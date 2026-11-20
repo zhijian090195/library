@@ -394,7 +394,7 @@ class _HomePage extends StatelessWidget {
       _Code('''dependencies:
   aicde_ui:
     git:
-      url: https://github.com/zhijian090195/design.git
+      url: https://github.com/zhijian090195/library.git
       path: flutter'''),
       const SizedBox(height: 12),
       _Code('''MaterialApp(

@@ -447,7 +447,7 @@ run();`,
   'aicde-visual-001': {
     height:340,
     html:`<figure class="kb">
-  <img src="https://zhijian090195.github.io/design/assets/visual/aicde-visual-001.webp" alt="稚拙復古混合媒材範例圖">
+  <img src="https://zhijian090195.github.io/library/assets/visual/aicde-visual-001.webp" alt="稚拙復古混合媒材範例圖">
 </figure>
 <button class="toggle">暫停</button>`,
     css:`body { flex-direction: column; gap: 16px; }
@@ -483,7 +483,7 @@ btn.addEventListener('click', () => {
   'aicde-visual-018': {
     height:340,
     html:`<figure class="kb">
-  <img src="https://zhijian090195.github.io/design/assets/visual/aicde-visual-018.webp" alt="暖白分層剪紙範例圖">
+  <img src="https://zhijian090195.github.io/library/assets/visual/aicde-visual-018.webp" alt="暖白分層剪紙範例圖">
 </figure>
 <button class="toggle">暫停</button>`,
     css:`body { flex-direction: column; gap: 16px; }

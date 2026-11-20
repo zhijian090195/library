@@ -198,7 +198,7 @@ ${sn.js}
     </article><aside class="toc" id="toc"></aside></div>`;
 
     if(sn){
-      const frame = view.querySelector('iframe'), load = () => { frame.srcdoc = fullFile(sn).split('https://zhijian090195.github.io/design/').join(''); };  // 預覽時改用本地圖片
+      const frame = view.querySelector('iframe'), load = () => { frame.srcdoc = fullFile(sn).split('https://zhijian090195.github.io/library/').join(''); };  // 預覽時改用本地圖片
       load();
       view.querySelector('[data-replay]').onclick = load;
       view.querySelector('[data-copy-full]').onclick = e => copy(fullFile(sn), e.currentTarget);
@@ -208,7 +208,7 @@ ${sn.js}
 
   /* ============ 頁面：元件 ============ */
   const REACT_INSTALL = js => "// main.jsx（或 Next.js 的 app/layout.jsx）\nimport './aicde-ui.css';" + (js ? "\nimport './aicde-ui.js';   // 只在瀏覽器執行；Next.js 請放在 'use client' 元件裡" : '');
-  const INSTALL = '<link rel="stylesheet" href="https://zhijian090195.github.io/design/assets/aicde-ui.css">\n<script src="https://zhijian090195.github.io/design/assets/aicde-ui.js" defer></' + 'script>';
+  const INSTALL = '<link rel="stylesheet" href="https://zhijian090195.github.io/library/assets/aicde-ui.css">\n<script src="https://zhijian090195.github.io/library/assets/aicde-ui.js" defer></' + 'script>';
   function pageComponent(id){
     const c = COMPONENTS.find(x => x.id === id); if(!c) return notFound();
     const g = COMP_GROUPS.find(x => x.id === c.group);

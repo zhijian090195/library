@@ -2,8 +2,8 @@
 
 AICDE 的設計系統：一套元件、15 種主題，同時提供網頁（純 CSS／JS）、React、Flutter 三個版本，外觀一致。
 
-**線上文件**：https://zhijian090195.github.io/design/
-**Flutter 範例**：https://zhijian090195.github.io/design/flutter-demo/
+**線上文件**：https://zhijian090195.github.io/library/
+**Flutter 範例**：https://zhijian090195.github.io/library/flutter-demo/
 
 - **59 個元件**：按鈕、表單、選擇器、日期、表格、對話框、通知、導覽…
 - **15 種主題**：不只換顏色，連材質一起換。例如紙雕的紙邊、墨線、網點、車縫線、票根缺口
@@ -40,8 +40,8 @@ AICDE 的設計系統：一套元件、15 種主題，同時提供網頁（純 C
 ```html
 <html data-theme-style="cute">   <!-- 換主題；不加就是預設的紙雕分層 -->
 <head>
-  <link rel="stylesheet" href="https://zhijian090195.github.io/design/assets/aicde-ui.css">
-  <script src="https://zhijian090195.github.io/design/assets/aicde-ui.js" defer></script>
+  <link rel="stylesheet" href="https://zhijian090195.github.io/library/assets/aicde-ui.css">
+  <script src="https://zhijian090195.github.io/library/assets/aicde-ui.js" defer></script>
 </head>
 <body>
   <button class="a-btn a-btn--primary">儲存</button>
@@ -74,7 +74,7 @@ import { ThemeProvider, Button } from 'aicde-ui';
 dependencies:
   aicde_ui:
     git:
-      url: https://github.com/zhijian090195/design.git
+      url: https://github.com/zhijian090195/library.git
       path: flutter
 ```
 
@@ -135,7 +135,7 @@ cd flutter && flutter test
 cd flutter/example && flutter run -d chrome   # 元件範例
 
 # 更新線上的 Flutter 範例（CanvasKit 從 CDN 載入，本地那份不用上傳）
-cd flutter/example && flutter build web --release --base-href /design/flutter-demo/ -o ../../flutter-demo && rm -rf ../../flutter-demo/canvaskit
+cd flutter/example && flutter build web --release --base-href /library/flutter-demo/ -o ../../flutter-demo && rm -rf ../../flutter-demo/canvaskit
 ```
 
 ## 授權

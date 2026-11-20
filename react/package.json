@@ -12,14 +12,14 @@
     "dark-mode",
     "themes"
   ],
-  "homepage": "https://zhijian090195.github.io/design/",
+  "homepage": "https://zhijian090195.github.io/library/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhijian090195/design.git",
+    "url": "git+https://github.com/zhijian090195/library.git",
     "directory": "react"
   },
   "bugs": {
-    "url": "https://github.com/zhijian090195/design/issues"
+    "url": "https://github.com/zhijian090195/library/issues"
   },
   "license": "MIT",
   "type": "module",

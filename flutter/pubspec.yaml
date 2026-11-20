@@ -1,8 +1,8 @@
 name: aicde_ui
 description: "AICDE 風格的 Flutter 元件庫：15 種主題（紙雕、粗野、醫療、可愛、金融…）、深淺色，所有元件共用同一套材質繪製。"
 version: 0.0.1
-homepage: https://zhijian090195.github.io/design/
-repository: https://github.com/zhijian090195/design/tree/main/flutter
+homepage: https://zhijian090195.github.io/library/
+repository: https://github.com/zhijian090195/library/tree/main/flutter
 
 environment:
   sdk: ^3.12.2

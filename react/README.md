@@ -2,7 +2,7 @@
 
 AICDE 風格的 React 元件庫。樣式沿用網站的 `aicde-ui.css`，元件只負責結構、狀態與無障礙屬性。
 
-元件文件與範例：https://zhijian090195.github.io/design/
+元件文件與範例：https://zhijian090195.github.io/library/
 
 ## 安裝
 
