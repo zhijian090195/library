@@ -2,45 +2,51 @@
 
 # AICDE Design Library
 
-AICDE 的設計系統：一套元件、15 種主題，同時提供網頁（純 CSS／JS）、React、Flutter 三個版本，外觀一致。
+一套做網站和 App 用的現成元件，像按鈕、輸入框、表格、對話框。拿來直接用，就不用每個專案從頭畫一次。
 
-**線上文件**：https://zhijian090195.github.io/library/
-**Flutter 範例**：https://zhijian090195.github.io/library/flutter-demo/
+- **看網站**：https://zhijian090195.github.io/library/
+- **看 Flutter 版**：https://zhijian090195.github.io/library/flutter-demo/
 
-- **59 個元件**：按鈕、表單、選擇器、日期、表格、對話框、通知、導覽…
-- **15 種主題**：不只換顏色，連材質一起換。例如紙雕的紙邊、墨線、網點、車縫線、票根缺口
-- **深淺色**：每個主題都支援
-- **36 個動畫範例**：每張卡片都能直接操作
-- **無障礙**：核心元件照 WAI-ARIA APG 規範處理鍵盤操作、讀屏屬性、減少動態效果，並有自動化測試把關。已知例外：預設主題的品牌色珊瑚紅 `#fc5454` 配白字，對比是 3.21:1，低於 WCAG AA 的 4.5:1，這是刻意保留的品牌色
+## 這是什麼
 
-## 15 種主題
+- **59 個元件**：按鈕、表單、日期、表格、對話框、通知、選單……做網站常用的都有。
+- **15 種風格**：同一個按鈕，可以一鍵換成紙雕、可愛、醫療、金融等風格。不只換顏色，連質感都會變。
+- **深色模式**：每種風格都有。
+- **三種寫法都能用**：一般網頁、React、Flutter（手機 App），三個版本長得一樣。
+- **好操作**：只用鍵盤也能操作，視障者用的讀屏軟體也念得出來。
 
-| 主題 | 網頁 `data-theme-style` | 特色 | 適合 |
-|---|---|---|---|
-| 紙雕分層（預設） | 不加屬性 | 底部紙邊、按下會沉進紙裡 | 品牌官網、一般產品 |
-| 簡潔 | `clean` | 無陰影、細線外框 | SaaS 後台、工具 |
-| 暖紙雕 | `paper` | 米色紙張、暖色紙邊 | 生活風格、文創、餐飲 |
-| 混合媒材 | `ink` | 墨線、不規則圓角、實心位移陰影 | 創意工作室、教育 |
-| 柔光立體 | `soft` | 膠囊按鈕、柔和陰影、光澤 | 消費型 App、健康 |
-| 網點絲印 | `riso` | 半色調網點、套色錯位 | 獨立出版、活動 |
-| 新粗野 | `brutal` | 3px 粗線、直角、等寬大寫字 | 開發者工具、新創 |
-| 手縫布藝 | `stitch` | 內側車縫虛線 | 手作、親子、寵物 |
-| 水彩票根 | `ticket` | 打孔缺口、水彩暈染 | 旅遊、展覽、票務 |
-| 啞光積木 | `block` | 厚底座、倒角光影 | 遊戲、兒童教育 |
-| 藍圖線稿 | `blueprint` | 細線、四角裁切標記 | 工程、建築、硬體 |
-| 醫療 | `clinical` | 海藍主色、44px 點擊範圍、清楚的 focus | 醫療院所、保險、政府 |
-| 可愛 | `cute` | 大圓角、貼紙描邊、彈跳動畫 | 寵物、兒童、社群 |
-| 金融 | `finance` | 高密度、等寬數字 | 交易平台、儀表板 |
-| 編輯 | `editorial` | 襯線標題、髮絲線、直角 | 媒體、部落格、出版 |
+## 15 種風格
 
-文件網站的「主題」頁可以看到每個主題套在整頁上的效果。
+| 風格 | 長什麼樣 | 適合 |
+|---|---|---|
+| 紙雕（預設） | 像一層層紙疊起來，按下去會凹 | 品牌官網、一般產品 |
+| 簡潔 `clean` | 乾淨、細框、沒有陰影 | 後台、工具 |
+| 暖紙雕 `paper` | 米色紙張、暖色系 | 生活風格、餐飲、文創 |
+| 混合媒材 `ink` | 手繪墨線、不規則邊角 | 創意工作室、教育 |
+| 柔光 `soft` | 圓圓的按鈕、柔和陰影 | 消費型 App、健康 |
+| 網點絲印 `riso` | 印刷網點、套色錯位 | 活動、獨立出版 |
+| 新粗野 `brutal` | 粗黑框、直角、打字機字體 | 開發者工具、新創 |
+| 手縫布藝 `stitch` | 車縫虛線 | 手作、親子、寵物 |
+| 水彩票根 `ticket` | 票券打孔、水彩暈染 | 旅遊、展覽、售票 |
+| 積木 `block` | 厚厚的底座、立體感 | 遊戲、兒童教育 |
+| 藍圖 `blueprint` | 工程圖細線 | 工程、建築、硬體 |
+| 醫療 `clinical` | 海藍色、按鈕大好點 | 醫院、保險、政府 |
+| 可愛 `cute` | 大圓角、貼紙感、會彈跳 | 寵物、兒童、社群 |
+| 金融 `finance` | 資訊密集、數字對齊 | 交易平台、報表 |
+| 編輯 `editorial` | 報紙雜誌感、襯線標題 | 媒體、部落格 |
 
-## 開始使用
+到網站的「主題」頁，可以看到每種風格套在整個頁面上的樣子。
 
-### 網頁（純 HTML）
+## 怎麼用
+
+依照你的專案類型，選一種：
+
+### 一般網頁
+
+在 HTML 裡加兩行，就能用了。想換風格，在 `<html>` 加上風格名稱：
 
 ```html
-<html data-theme-style="cute">   <!-- 換主題；不加就是預設的紙雕分層 -->
+<html data-theme-style="cute">   <!-- 換成「可愛」風格；不寫就是預設的紙雕 -->
 <head>
   <link rel="stylesheet" href="https://zhijian090195.github.io/library/assets/aicde-ui.css">
   <script src="https://zhijian090195.github.io/library/assets/aicde-ui.js" defer></script>
@@ -51,13 +57,17 @@ AICDE 的設計系統：一套元件、15 種主題，同時提供網頁（純 C
 </html>
 ```
 
-只用到 CSS 的元件不需要引入 JS。每個元件需要哪些檔案，文件網站上都有寫。
+每個元件怎麼寫，網站上都有範例可以直接複製。
 
 ### React
+
+先安裝：
 
 ```bash
 npm install aicde-ui
 ```
+
+再這樣用：
 
 ```tsx
 import 'aicde-ui/style.css';
@@ -68,9 +78,11 @@ import { ThemeProvider, Button } from 'aicde-ui';
 </ThemeProvider>
 ```
 
-詳細說明見 [`react/README.md`](react/README.md)。
+更多說明：[`react/README.md`](react/README.md)
 
-### Flutter
+### Flutter（手機 App）
+
+在 `pubspec.yaml` 加上：
 
 ```yaml
 dependencies:
@@ -79,6 +91,8 @@ dependencies:
       url: https://github.com/zhijian090195/library.git
       path: flutter
 ```
+
+再這樣用：
 
 ```dart
 MaterialApp(
@@ -89,63 +103,65 @@ MaterialApp(
 AicdeButton(label: '儲存', variant: AicdeButtonVariant.primary, onPressed: save);
 ```
 
-詳細說明見 [`flutter/README.md`](flutter/README.md)。
+更多說明：[`flutter/README.md`](flutter/README.md)
 
-## 專案結構
+## 給開發者
+
+<details>
+<summary>資料夾說明、怎麼改顏色、怎麼跑測試（點開）</summary>
+
+### 資料夾
 
 ```
-index.html              文件網站入口
-assets/
-  aicde-ui.css          元件庫（網頁版，React 版也用這份）
-  aicde-ui.js           需要互動的元件（標籤頁、對話框、表格排序…）
-  docs*.js              元件文件與範例
-  themes.js             主題說明
-  templates*.js         主題頁用的整頁示範
-react/                  React 套件 aicde-ui
-flutter/                Flutter 套件 aicde_ui
-tokens/                 設計 token 的唯一來源
-tests/                  網頁版自動化測試
+index.html     網站首頁
+assets/        網頁版元件（aicde-ui.css、aicde-ui.js）和網站內容
+react/         React 版
+flutter/       Flutter 版
+tokens/        顏色、圓角這些設定，三個版本共用
+tests/         自動測試
 ```
 
-## 設計 token
+### 想改顏色或圓角
 
-色票、圓角、各主題的底色和元件高度都放在 [`tokens/tokens.json`](tokens/tokens.json)，三個版本都從這份產生。修改後執行：
+顏色、圓角、按鈕高度都寫在 [`tokens/tokens.json`](tokens/tokens.json) 這一個檔案。改完執行下面這行，網頁版和 Flutter 版會一起更新：
 
 ```bash
 node tokens/build.mjs
 ```
 
-會同時更新 `aicde-ui.css` 和 Flutter 的 token。詳見 [`tokens/README.md`](tokens/README.md)。
+詳細說明：[`tokens/README.md`](tokens/README.md)
 
-## 開發
+### 在自己電腦上跑
 
 ```bash
-# 文件網站：任何靜態伺服器都可以
-python3 -m http.server 8000      # 打開 http://localhost:8000
+# 開網站（打開 http://localhost:8000）
+python3 -m http.server 8000
 
-# 檢查 token 有沒有過期
-node tokens/build.mjs --check
+# 跑測試
+python3 tests/web/test_core.py            # 網頁版
+cd react && npm install && npm test       # React
+cd flutter && flutter test                # Flutter
 
-# 網頁版測試（無障礙與鍵盤操作）
-python3 tests/web/test_core.py
-
-# React
-cd react && npm install && npm test && npm run build
-
-# Flutter
-cd flutter && flutter test
-cd flutter/example && flutter run -d chrome   # 元件範例
-
-# 更新線上的 Flutter 範例（CanvasKit 從 CDN 載入，本地那份不用上傳）
-cd flutter/example && flutter build web --release --base-href /library/flutter-demo/ -o ../../flutter-demo && rm -rf ../../flutter-demo/canvaskit
+# 開 Flutter 範例
+cd flutter/example && flutter run -d chrome
 ```
+
+### 更新網站上的 Flutter 範例
+
+```bash
+cd flutter/example
+flutter build web --release --base-href /library/flutter-demo/ -o ../../flutter-demo
+rm -rf ../../flutter-demo/canvaskit
+```
+
+推上 GitHub 後，網站會自動更新。
+
+</details>
 
 ## 授權
 
-MIT
+- **程式碼**：MIT 授權，可以免費使用、修改、商用。
+- **AICDE 名稱和 logo**：不包含在內。用這套元件做自己的產品時，請換成你自己的名稱和 logo。
+- **字型**：範例裡用的都是免費開源字型，授權條文在 [`flutter/example/fonts/OFL.txt`](flutter/example/fonts/OFL.txt)。
 
-## 品牌
-
-程式碼以 MIT 授權釋出，但 **AICDE 名稱與 logo 不在 MIT 授權範圍內**，它們是 AICDE 的品牌識別。使用本元件庫做你自己的產品時，請換成你自己的名稱與 logo。
-
-範例 App 打包的字型是 SIL Open Font License 1.1 的開源字型，授權條文見 [`flutter/example/fonts/OFL.txt`](flutter/example/fonts/OFL.txt)。
+小提醒：預設風格的珊瑚紅按鈕配白字，顏色對比比無障礙標準低一點。這是為了保留品牌色刻意的選擇；如果你的產品很重視無障礙（例如政府、醫療），建議改用「醫療」風格。
