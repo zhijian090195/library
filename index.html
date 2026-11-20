@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AICDE Design Library</title>
+<meta name="description" content="網頁設計、動畫與視覺生成 skill 的展示與參考，每張卡片都是會自動播放、也能直接操作的範例。">
+<meta name="theme-color" content="#173f50">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Serif+TC:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/aicde-ui.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span class="logo">A</span><b>AICDE Design</b>
+  <button class="menu-btn" id="menuBtn" aria-label="開啟目錄"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<aside class="side" aria-label="目錄">
+  <div class="brand"><span class="logo">A</span><div><b>AICDE</b><small>Design Library</small></div></div>
+  <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="搜尋元件或動畫…" autocomplete="off"></label>
+  <nav class="nav" id="nav"></nav>
+  <div class="side-foot"><span id="sideCount"></span><select class="theme-btn theme-select" id="styleSel" aria-label="元件主題">
+      <option value="">主題：紙雕分層（預設）</option><option value="clean">簡潔</option><option value="paper">暖紙雕</option><option value="ink">混合媒材</option><option value="soft">柔光立體</option><option value="riso">網點絲印</option><option value="brutal">新粗野</option><option value="stitch">手縫布藝</option><option value="ticket">水彩票根</option><option value="block">啞光積木</option><option value="blueprint">藍圖線稿</option><option value="clinical">醫療</option><option value="cute">可愛</option><option value="finance">金融</option><option value="editorial">編輯</option>
+    </select><button class="theme-btn" id="themeBtn">◐ 深淺色</button></div>
+</aside>
+
+<div class="main">
+  <div class="content">
+    <div id="view"></div>
+  </div>
+</div>
+
+<script src="assets/aicde-ui.js"></script>
+<script src="assets/data.js"></script>
+<script src="assets/demos.js"></script>
+<script src="assets/docs.js"></script>
+<script src="assets/docs-2.js"></script>
+<script src="assets/docs-3.js"></script>
+<script src="assets/docs-4.js"></script>
+<script src="assets/docs-5.js"></script>
+<script src="assets/snippets/a.js"></script>
+<script src="assets/snippets/b.js"></script>
+<script src="assets/snippets/c.js"></script>
+<script src="assets/themes.js"></script>
+<script src="assets/templates.js"></script>
+<script src="assets/templates-a.js"></script>
+<script src="assets/templates-b.js"></script>
+<script src="assets/jsx.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

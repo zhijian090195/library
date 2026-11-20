@@ -1,0 +1,6 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" fill="#173f50" d="M256 64 C380 64 456 140 456 236 C456 300 410 324 360 318 C318 313 296 334 304 370 C312 412 290 448 240 448 C130 448 56 364 56 256 C56 146 140 64 256 64 Z M356 236 A34 34 0 1 0 356.1 236 Z"/>
+  <circle cx="176" cy="200" r="38" fill="#fc5454"/>
+  <circle cx="276" cy="152" r="30" fill="#ffffff"/>
+  <circle cx="160" cy="316" r="30" fill="#ffffff" opacity=".6"/>
+</svg>
