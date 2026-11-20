@@ -1,6 +1,6 @@
 /* 動畫程式碼 batch C：圖像生成、開發工具、AICDE 視覺風格 */
 Object.assign(window.SNIPPETS, {
-  'taste-image-to-code': {
+  'mockup-to-code': {
     height:320,
     html:`<div class="i2c">
   <div class="shot"><i class="a"></i><i class="b"></i><i class="c"></i><div class="scan"></div></div>
@@ -46,7 +46,7 @@ play();`,
     ]
   },
 
-  'taste-brandkit': {
+  'brand-board': {
     height:340,
     html:`<svg class="mark" viewBox="0 0 200 140" aria-label="Logo 幾何結構">
   <g class="guides">
@@ -232,7 +232,7 @@ btn.addEventListener('click', () => {
     ]
   },
 
-  'ui-pick-ui-library': {
+  'component-finder': {
     height:320,
     html:`<div class="cmd">
   <div class="q"><span class="icon">⌕</span><span id="query"></span><span class="caret"></span></div>
@@ -253,7 +253,7 @@ btn.addEventListener('click', () => {
 .row b { font: 500 12px ui-monospace, monospace; color: #fc5454; }
 .next { height: 32px; padding: 0 12px; border: 1px solid #cfd6db; border-radius: 8px; background: #fff; cursor: pointer; }
 @media (prefers-reduced-motion: reduce) { .row { transform: none; } .caret { animation: none; } }`,
-    js:`const LIBS = [['數字動畫', 'NumberFlow'], ['⌘K 指令選單', 'cmdk'], ['拖放排序', 'dnd kit'], ['驗證碼輸入', 'input-otp'], ['即時串流圖表', 'Liveline']];
+    js:`const LIBS = [['指令選單', 'a-command'], ['驗證碼輸入', 'a-otp'], ['日期區間', 'a-range-picker'], ['多層選單', 'a-cascader'], ['左右穿梭', 'a-transfer']];
 const query = document.getElementById('query');
 const results = document.getElementById('results');
 let k = 0, timer;
@@ -288,7 +288,7 @@ search();`,
     ]
   },
 
-  'ui-ask-sonner': {
+  'toast-stack': {
     height:320,
     html:`<button class="send">送出通知</button>
 <div class="toaster" id="toaster" aria-live="polite"></div>`,
@@ -344,7 +344,7 @@ document.querySelector('.send').addEventListener('click', () => {
     ]
   },
 
-  'frontend-developer': {
+  'responsive-component': {
     height:300,
     html:`<div class="demo">
   <div class="frame" id="frame">
@@ -383,7 +383,7 @@ btn.addEventListener('click', () => {
     ]
   },
 
-  'webapp-testing': {
+  'e2e-check': {
     height:300,
     html:`<div class="pw">
   <div class="view" id="view">

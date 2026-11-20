@@ -297,7 +297,7 @@ window.COMPONENTS = [
 
 /* ---------- 動畫程式碼：預覽區直接執行這份程式碼，所以複製下來就能用 ---------- */
 window.SNIPPETS = {
-  'ui-animate': {
+  'motion-decisions': {
     height:300,
     html:`<div class="pop">
   <button class="pop-trigger" aria-expanded="false" aria-controls="pop-menu">選項 ▾</button>
@@ -362,7 +362,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(fals
     ]
   },
 
-  'ui-animate-expo': {
+  'mobile-gesture': {
     height:480,
     html:`<div class="phone">
   <div class="sheet" id="sheet">
@@ -436,7 +436,7 @@ sheet.addEventListener('pointerup', () => {
     ]
   },
 
-  'ui-find-animation-opportunities': {
+  'motion-opportunities': {
     height:340,
     html:`<ul class="list">
   <li>鍵盤快捷鍵開啟面板<span class="tag no">拒絕</span></li>

@@ -1,6 +1,6 @@
 /* 動畫程式碼 batch A */
 Object.assign(window.SNIPPETS, {
-  'ui-animation-vocabulary': {
+  'motion-vocabulary': {
     height:320,
     html:`<div class="vocab">
   <div class="box" id="box"></div>
@@ -55,7 +55,7 @@ buttons.forEach(btn => btn.addEventListener('click', () => {
     ]
   },
 
-  'ui-apple-design': {
+  'fluid-gesture': {
     height:380,
     html:`<div class="area" id="area">
   <div class="puck" id="puck"></div>
@@ -128,7 +128,7 @@ puck.addEventListener('pointerup', springBack);`,
     ]
   },
 
-  'ui-emil-design-eng': {
+  'easing-details': {
     height:300,
     html:`<div class="race">
   <div class="lane"><span>ease-in</span><div class="track"><i class="runner"></i></div></div>
@@ -170,7 +170,7 @@ document.querySelector('.go').addEventListener('click', () => {
     ]
   },
 
-  'ui-prototype': {
+  'variant-prototype': {
     height:300,
     html:`<div class="proto">
   <div class="variant" id="variant"></div>
@@ -229,7 +229,7 @@ pick(0);`,
     ]
   },
 
-  'ui-improve-animations': {
+  'motion-audit': {
     height:320,
     html:`<div class="audit">
   <h4>動畫稽核報告 <span>19 findings</span></h4>
@@ -279,7 +279,7 @@ play();`,
     ]
   },
 
-  'ui-review-animations': {
+  'motion-code-review': {
     height:340,
     html:`<div class="diff">
   <div class="ln">.dropdown {</div>
@@ -332,7 +332,7 @@ play();`,
     ]
   },
 
-  'taste-redesign': {
+  'redesign-upgrade': {
     height:340,
     html:`<div class="compare" id="compare">
   <div class="pane before">
@@ -383,7 +383,7 @@ document.querySelector('.toggle').addEventListener('click', () => compare.classL
     ]
   },
 
-  'design:design-critique': {
+  'screen-critique': {
     height:340,
     html:`<div class="crit">
   <div class="mock">
@@ -447,7 +447,7 @@ show(0);`,
     ]
   },
 
-  'design:accessibility-review': {
+  'a11y-check': {
     height:320,
     html:`<div class="con">
   <div class="sample" id="sample">Aa 文字範例</div>
@@ -521,7 +521,7 @@ check(buttons[0]);`,
     ]
   },
 
-  'design:ux-copy': {
+  'ux-copy': {
     height:280,
     html:`<div class="ux">
   <div class="card">
@@ -582,7 +582,7 @@ document.getElementById('next').addEventListener('click', () => { k = (k + 1) % 
     ]
   },
 
-  'design:user-research': {
+  'user-interviews': {
     height:340,
     html:`<div class="chat" id="chat">
   <div class="bub q">最近一次訂餐是什麼時候？</div>

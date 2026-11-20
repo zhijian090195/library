@@ -1,5 +1,5 @@
 name: aicde_ui_example
-description: "A new Flutter project."
+description: "aicde_ui 元件範例"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   aicde_ui:
     path: ../
 
@@ -58,6 +60,31 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  # 範例 App 用的開源字型（SIL OFL 1.1，見 fonts/README.md）。
+  # 只放拉丁字母；中文字會自動改用 Noto Sans TC 顯示。
+  fonts:
+    - family: Noto Sans TC
+      fonts:
+        - asset: fonts/NotoSans-400.ttf
+        - asset: fonts/NotoSans-500.ttf
+          weight: 500
+        - asset: fonts/NotoSans-700.ttf
+          weight: 700
+    - family: Noto Serif TC
+      fonts:
+        - asset: fonts/NotoSerif-400.ttf
+        - asset: fonts/NotoSerif-700.ttf
+          weight: 700
+    - family: JetBrains Mono
+      fonts:
+        - asset: fonts/JetBrainsMono-400.ttf
+        - asset: fonts/JetBrainsMono-600.ttf
+          weight: 600
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-600.ttf
+          weight: 600
 
   # To add assets to your application, add an assets section, like this:
   # assets:

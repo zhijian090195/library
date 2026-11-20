@@ -401,7 +401,7 @@ window.DEMOS = {
     return [() => { down = !down; pg.style.transform = down ? 'translateY(-52%)' : 'none'; }, 2400];
   },
   picklib(st){
-    const Q = [['數字動畫','NumberFlow'],['⌘K 指令選單','cmdk'],['拖放排序','dnd kit'],['驗證碼輸入','input-otp'],['即時串流圖表','Liveline']];
+    const Q = [['指令選單','a-command'],['驗證碼輸入','a-otp'],['日期區間','a-range-picker'],['多層選單','a-cascader'],['左右穿梭','a-transfer']];
     st.innerHTML = `<div class="d-lib panel"><div class="lib-q"><span class="ic0">⌕</span><span class="q"></span><span class="cur"></span></div>
       <div class="lib-r">${Q.slice(0, 3).map(() => `<div class="lib-row"><span></span><b></b></div>`).join('')}</div></div>`;
     const type = typer(st.querySelector('.q'), 90), rows = [...st.querySelectorAll('.lib-row')];

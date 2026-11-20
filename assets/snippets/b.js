@@ -1,7 +1,7 @@
 /* 動畫程式碼 batch B：研究與交付、視覺風格、圖像生成（部分） */
 Object.assign(window.SNIPPETS, {
 
-  'design:research-synthesis': {
+  'insight-sorting': {
     height:400,
     html:`<div class="board">
   <div class="cols"><span>回訪需求</span><span>結帳摩擦</span><span>配送</span></div>
@@ -61,7 +61,7 @@ place();`,
     ]
   },
 
-  'design:design-system': {
+  'token-audit': {
     height:360,
     html:`<div class="panel">
   <div class="row"><code class="raw">#173f51</code><span class="arr">→</span><code class="tk">var(--navy)</code><span class="ck">✓</span></div>
@@ -117,7 +117,7 @@ document.querySelector('.run').addEventListener('click', run);`,
     ]
   },
 
-  'design:design-handoff': {
+  'handoff-spec': {
     height:340,
     html:`<div class="spec">
   <div class="comp"><div class="avatar"></div><div class="text"><i></i><i class="s"></i></div><div class="btn">追蹤</div></div>
@@ -172,7 +172,7 @@ btn.addEventListener('click', () => {
     ]
   },
 
-  'taste-frontend': {
+  'layout-dials': {
     height:360,
     html:`<div class="wrap">
   <div class="dials">
@@ -227,7 +227,7 @@ update();`,
     ]
   },
 
-  'taste-soft': {
+  'soft-depth': {
     height:320,
     html:`<div class="bezel" tabindex="0">
   <div class="core">
@@ -272,7 +272,7 @@ body { flex-direction: column; gap: 20px; }
     ]
   },
 
-  'taste-minimalist': {
+  'warm-minimal': {
     height:340,
     html:`<div class="bento">
   <div class="t t1" style="--i:0"><em>Less,</em><br>but better.</div>
@@ -319,7 +319,7 @@ play();`,
     ]
   },
 
-  'taste-brutalist': {
+  'brutal-grid': {
     height:320,
     html:`<div class="term">
   <div class="head"><span>FILE_047</span><span class="stamp">CLASSIFIED</span></div>
@@ -372,7 +372,7 @@ type();`,
     ]
   },
 
-  'taste-gpt': {
+  'scroll-story': {
     height:360,
     html:`<div class="stack">
   <div class="card"><b>01</b>Attention</div>
@@ -423,7 +423,7 @@ shown = 1; layout();`,
     ]
   },
 
-  'taste-stitch': {
+  'design-md': {
     height:360,
     html:`<div class="md">
   <div class="l h"># DESIGN.md</div>
@@ -470,7 +470,7 @@ play();`,
     ]
   },
 
-  'taste-imagegen-web': {
+  'section-mockups': {
     height:380,
     html:`<div class="page">
   <div class="sec hero" style="--i:0"><span>Hero</span></div>
@@ -519,7 +519,7 @@ run();`,
     ]
   },
 
-  'taste-imagegen-mobile': {
+  'app-screens': {
     height:400,
     html:`<div class="phones">
   <div class="mp" data-pos="0"><div class="hero"></div><i></i><i class="s"></i><div class="row"><b></b><b></b></div></div>

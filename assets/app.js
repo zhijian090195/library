@@ -17,16 +17,16 @@
       h += `<div class="ng"><div class="ng-h"><span>${g.name}</span></div><ul>${items.map(c =>
         `<li data-search="${esc((c.name + ' ' + c.en + ' ' + c.desc).toLowerCase())}"><a href="#/c/${c.id}" data-route="/c/${c.id}">${c.name}<span class="en">${c.en}</span></a></li>`).join('')}</ul></div>`;
     });
-    h += `<div class="nav-sec">動畫<em>${SKILLS.length}</em></div>`;
+    h += `<div class="nav-sec">動畫<em>${MOTIONS.length}</em></div>`;
     GROUPS.forEach(g => {
-      const items = SKILLS.filter(s => s.group === g.id);
+      const items = MOTIONS.filter(s => s.group === g.id);
       h += `<div class="ng"><div class="ng-h"><span>${g.name}</span><em>${items.length}</em></div><ul>${items.map(s =>
         `<li data-search="${esc((typeOf(s) + ' ' + s.id + ' ' + s.title + ' ' + s.desc).toLowerCase())}"><a href="#/a/${slug(s.id)}" data-route="/a/${slug(s.id)}" title="${esc(s.title)}">${esc(typeOf(s))}${SNIPPETS[s.id] ? '<i class="has-code">CODE</i>' : ''}</a></li>`).join('')}</ul></div>`;
     });
     nav.innerHTML = h;
   }
   buildNav();
-  $('#sideCount').textContent = `${THEMES.length} 主題 · ${COMPONENTS.length} 元件 · ${SKILLS.length} 動畫`;
+  $('#sideCount').textContent = `${THEMES.length} 主題 · ${COMPONENTS.length} 元件 · ${MOTIONS.length} 動畫`;
 
   /* ============ 共用 ============ */
   const revealIO = new IntersectionObserver(es => es.forEach(e => {
@@ -141,22 +141,22 @@ ${sn.js}
       <header class="hero">
         <div class="eyebrow">AICDE Design Library</div>
         <h1>元件、動畫與視覺<br>的 <span>設計</span> 參考庫</h1>
-        <p>AICDE 風格的原生 HTML/CSS 元件庫，加上我做網頁時常用的動畫與設計 skill。每個項目都有可操作的範例，整理好的頁面附上可以直接複製的程式碼。</p>
-        <div class="stats"><div><b>${COMPONENTS.length}</b>元件</div><div><b>${SKILLS.length}</b>動畫</div><div><b>${Object.keys(SNIPPETS).length}</b>附程式碼</div><div><b>0</b>建置工具</div></div>
+        <p>AICDE 風格的原生 HTML/CSS 元件庫，加上做網頁常用的動畫與設計方法。每個項目都有可操作的範例，整理好的頁面附上可以直接複製的程式碼。</p>
+        <div class="stats"><div><b>${COMPONENTS.length}</b>元件</div><div><b>${MOTIONS.length}</b>動畫</div><div><b>${Object.keys(SNIPPETS).length}</b>附程式碼</div><div><b>0</b>建置工具</div></div>
       </header>
       <section class="group" data-group="components"><div class="group-h"><div><h2>元件</h2><p>引入一份 CSS，複製 HTML 就能用。</p></div><span class="num">${String(COMPONENTS.length).padStart(2,'0')} COMPONENTS</span></div>
         <div class="grid">${COMPONENTS.map(c => `<a class="card comp-card" href="#/c/${c.id}" data-search="${esc((c.name + ' ' + c.en + ' ' + c.desc).toLowerCase())}"><div class="stage comp-stage"><div class="comp-fit">${c.demos[0].html.replace(/<a\b/g, '<span').replace(/<\/a>/g, '</span>')}</div></div><div class="meta"><h3>${c.name} <span class="en">${c.en}</span></h3><p>${esc(c.desc)}</p></div></a>`).join('')}</div></section>
       ${GROUPS.map(g => {
-        const items = SKILLS.filter(s => s.group === g.id);
+        const items = MOTIONS.filter(s => s.group === g.id);
         return `<section class="group" data-group="${g.id}"><div class="group-h"><div><h2>${g.name}</h2><p>${g.desc}</p></div><span class="num">${String(items.length).padStart(2,'0')} MOTIONS</span></div><div class="grid">${items.map(s => `
           <article class="card" data-id="${s.id}" data-search="${esc((typeOf(s) + ' ' + s.id + ' ' + s.title + ' ' + s.desc + ' ' + s.tags.join(' ')).toLowerCase())}">
             <div class="stage"></div>
-            <div class="meta"><h3><a href="#/a/${slug(s.id)}">${esc(typeOf(s))}</a></h3><p>${esc(s.desc)}</p><div class="skill-of">Skill · ${esc(s.title)}</div>
+            <div class="meta"><h3><a href="#/a/${slug(s.id)}">${esc(typeOf(s))}</a></h3><p>${esc(s.desc)}</p><div class="motion-of">${esc(s.title)}</div>
               <div class="meta-foot"><div class="tags">${s.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div><a class="more" href="#/a/${slug(s.id)}">${SNIPPETS[s.id] ? '程式碼 →' : '查看 →'}</a></div></div>
           </article>`).join('')}</div></section>`;
       }).join('')}
       <div class="empty" id="empty">找不到符合的項目，換個關鍵字試試。</div>`;
-    view.querySelectorAll('.card[data-id]').forEach(el => mountDemo(el.querySelector('.stage'), SKILLS.find(s => s.id === el.dataset.id)));
+    view.querySelectorAll('.card[data-id]').forEach(el => mountDemo(el.querySelector('.stage'), MOTIONS.find(s => s.id === el.dataset.id)));
     view.querySelectorAll('.comp-stage').forEach(st => { st.inert = true; st.querySelectorAll('dialog').forEach(d => d.remove()); });
     fitThumbs();
     view.querySelectorAll('.comp-stage img').forEach(im => im.complete || im.addEventListener('load', () => fitThumb(im.closest('.comp-stage')), {once: true}));
@@ -168,14 +168,14 @@ ${sn.js}
 
   /* ============ 頁面：動畫 ============ */
   function pageMotion(id){
-    const s = SKILLS.find(x => slug(x.id) === id); if(!s) return notFound();
+    const s = MOTIONS.find(x => slug(x.id) === id); if(!s) return notFound();
     const g = GROUPS.find(x => x.id === s.group), sn = SNIPPETS[s.id];
-    const i = SKILLS.indexOf(s), prev = SKILLS[i - 1], next = SKILLS[i + 1];
+    const i = MOTIONS.indexOf(s), prev = MOTIONS[i - 1], next = MOTIONS[i + 1];
     view.innerHTML = `<div class="doc-wrap"><article class="doc">
       <div class="crumb"><a href="#/">總覽</a> / 動畫 / ${g.name}</div>
       <h1>${esc(typeOf(s))}</h1>
       <p class="lead">${esc(s.desc)}</p>
-      <div class="doc-meta"><span>Skill：<b>${esc(s.title)}</b> <code>${esc(s.id)}</code></span><span>來源：${esc(SOURCES[s.src])}</span></div>
+      <div class="doc-meta"><span><b>${esc(s.title)}</b></span><span>${s.tags.map(esc).join(' · ')}</span></div>
 
       <h2 id="demo">範例</h2>
       <div class="demo-box">
