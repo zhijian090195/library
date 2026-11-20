@@ -7,3 +7,5 @@
 - Poppins
 
 中文字由 Flutter 自動改用 Noto Sans TC 顯示，不用另外打包。
+
+完整授權條文見同一資料夾的 [`OFL.txt`](OFL.txt)。

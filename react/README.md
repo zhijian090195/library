@@ -84,3 +84,5 @@ export default function App() {
 ## 授權
 
 MIT
+
+AICDE 名稱與 logo 不在 MIT 授權範圍內。

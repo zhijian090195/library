@@ -143,3 +143,9 @@ cd flutter/example && flutter build web --release --base-href /library/flutter-d
 ## 授權
 
 MIT
+
+## 品牌
+
+程式碼以 MIT 授權釋出，但 **AICDE 名稱與 logo 不在 MIT 授權範圍內**，它們是 AICDE 的品牌識別。使用本元件庫做你自己的產品時，請換成你自己的名稱與 logo。
+
+範例 App 打包的字型是 SIL Open Font License 1.1 的開源字型，授權條文見 [`flutter/example/fonts/OFL.txt`](flutter/example/fonts/OFL.txt)。
