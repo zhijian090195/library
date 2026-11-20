@@ -29,7 +29,7 @@ String _norm(String s) => s.toLowerCase().replaceAll(RegExp('[^a-z]'), '');
 const _alias = {'imagepreview': 'image', 'datepicker': 'date', 'colorpicker': 'color', 'otpinput': 'otp'};
 
 /// 網頁版說明裡提到 CSS class、JS 的句子，Flutter 用不到，略過
-final _webOnly = RegExp(r'\.js|\.css|CSS|\ba-[a-z]|is-[a-z]|data-|transform|aicde-ui');
+final _webOnly = RegExp(r'原生|\.js|\.css|CSS|\ba-[a-z]|is-[a-z]|data-|transform|aicde-ui');
 String _flutterize(String s) => s.split('。').where((x) => x.trim().isNotEmpty && !_webOnly.hasMatch(x)).map((x) => '$x。').join();
 
 final List<Entry> entries = () {

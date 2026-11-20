@@ -9,6 +9,7 @@
   /* ============ Sidebar ============ */
   function buildNav(){
     let h = `<a class="nav-top" href="#/" data-route="/">總覽</a>`;
+    h += `<a class="nav-top" href="flutter-demo/" target="_blank" rel="noopener">Flutter 範例 ↗</a>`;
     h += `<div class="nav-sec">主題<em>${THEMES.length}</em></div><div class="ng"><ul><li data-search="主題總覽 themes"><a href="#/s" data-route="/s">主題總覽<span class="en">All themes</span></a></li>${THEMES.map(t =>
       `<li data-search="${esc((t.name + ' ' + t.en + ' ' + t.tagline + ' ' + t.fit.join(' ')).toLowerCase())}"><a href="#/s/${t.id}" data-route="/s/${t.id}">${t.name}<span class="en">${t.en}</span></a></li>`).join('')}</ul></div>`;
     h += `<div class="nav-sec">元件<em>${COMPONENTS.length}</em></div>`;

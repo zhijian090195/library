@@ -9,3 +9,4 @@ flutter/build/
 flutter/example/.dart_tool/
 flutter/example/build/
 flutter/pubspec.lock
+flutter-demo/canvaskit/

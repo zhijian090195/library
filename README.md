@@ -3,6 +3,7 @@
 AICDE 的設計系統：一套元件、15 種主題，同時提供網頁（純 CSS／JS）、React、Flutter 三個版本，外觀一致。
 
 **線上文件**：https://zhijian090195.github.io/design/
+**Flutter 範例**：https://zhijian090195.github.io/design/flutter-demo/
 
 - **59 個元件**：按鈕、表單、選擇器、日期、表格、對話框、通知、導覽…
 - **15 種主題**：不只換顏色，連材質一起換。例如紙雕的紙邊、墨線、網點、車縫線、票根缺口
@@ -132,6 +133,9 @@ cd react && npm install && npm test && npm run build
 # Flutter
 cd flutter && flutter test
 cd flutter/example && flutter run -d chrome   # 元件範例
+
+# 更新線上的 Flutter 範例（CanvasKit 從 CDN 載入，本地那份不用上傳）
+cd flutter/example && flutter build web --release --base-href /design/flutter-demo/ -o ../../flutter-demo && rm -rf ../../flutter-demo/canvaskit
 ```
 
 ## 授權
