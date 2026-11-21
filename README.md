@@ -2,10 +2,16 @@
 
 # AICDE Design Library
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/aicde-ui"><img src="https://img.shields.io/npm/v/aicde-ui?color=fc5454&label=npm" alt="npm"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-173f50" alt="MIT"></a>
+</p>
+
 一套做網站和 App 用的現成元件，像按鈕、輸入框、表格、對話框。拿來直接用，就不用每個專案從頭畫一次。
 
 - **看網站**：https://zhijian090195.github.io/library/
 - **看 Flutter 版**：https://zhijian090195.github.io/library/flutter-demo/
+- **npm 套件（React）**：https://www.npmjs.com/package/aicde-ui
 
 ## 這是什麼
 
