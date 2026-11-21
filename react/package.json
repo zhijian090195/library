@@ -1,6 +1,6 @@
 {
   "name": "aicde-ui",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "AICDE 風格的 React 元件庫：59 個元件、15 種主題、支援深色模式與 TypeScript",
   "author": "Asher Tee (https://github.com/zhijian090195)",
   "keywords": [

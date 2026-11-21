@@ -207,7 +207,8 @@ ${sn.js}
   }
 
   /* ============ 頁面：元件 ============ */
-  const REACT_INSTALL = js => "// main.jsx（或 Next.js 的 app/layout.jsx）\nimport './aicde-ui.css';" + (js ? "\nimport './aicde-ui.js';   // 只在瀏覽器執行；Next.js 請放在 'use client' 元件裡" : '');
+  const REACT_NAME = { toast: 'toast, Toaster', notification: 'notify, Toaster', otp: 'OtpInput', image: 'ImagePreview' };
+  const REACT_INSTALL = c => "# 1. 安裝\nnpm install aicde-ui\n\n// 2. 在入口檔案（main.jsx 或 Next.js 的 app/layout.jsx）引入一次樣式\nimport 'aicde-ui/style.css';\n\n// 3. 在要用的地方引入元件\nimport { " + (REACT_NAME[c.id] || c.en.replace(/\s/g, '')) + " } from 'aicde-ui';";
   const INSTALL = '<link rel="stylesheet" href="https://zhijian090195.github.io/library/assets/aicde-ui.css">\n<script src="https://zhijian090195.github.io/library/assets/aicde-ui.js" defer></' + 'script>';
   function pageComponent(id){
     const c = COMPONENTS.find(x => x.id === id); if(!c) return notFound();
@@ -224,8 +225,8 @@ ${sn.js}
       <h2 id="install">引入</h2>
       <p class="install-note">${c.js ? '這個元件需要 CSS 和 JS 兩個檔案。' : '這個元件只需要 CSS，JS 那行可以不加。'}</p>
       <div class="install"><pre>${esc(INSTALL)}</pre><button class="act" data-copy-install>複製</button></div>
-      <p class="install-note install-note--react">在 React／Next.js 裡：把 <code>aicde-ui.css</code>${c.js ? ' 和 <code>aicde-ui.js</code>' : ''} 下載到專案，在入口檔案引入一次；每個範例的程式碼都有「React」分頁。</p>
-      <div class="install"><pre>${esc(REACT_INSTALL(c.js))}</pre><button class="act" data-copy-react>複製</button></div>
+      <p class="install-note install-note--react">用 React／Next.js 的話，直接用 npm 安裝。元件會自己處理點擊、開關這些互動，不用另外引入 JS。參數說明見 <a href="https://www.npmjs.com/package/aicde-ui" target="_blank" rel="noopener">npm 頁面</a>。</p>
+      <div class="install"><pre>${esc(REACT_INSTALL(c))}</pre><button class="act" data-copy-react>複製</button></div>
 
       <h2 id="examples">範例</h2>
       ${c.demos.map((d, k) => `<div class="demo-box" id="ex-${k}" data-toc="${esc(d.title)}">
@@ -241,7 +242,7 @@ ${sn.js}
       <nav class="pager">${prev ? `<a href="#/c/${prev.id}"><small>上一個</small>${prev.name} ${prev.en}</a>` : '<span></span>'}${next ? `<a class="nx" href="#/c/${next.id}"><small>下一個</small>${next.name} ${next.en}</a>` : '<span></span>'}</nav>
     </article><aside class="toc" id="toc"></aside></div>`;
     view.querySelector('[data-copy-install]').onclick = e => copy(INSTALL, e.currentTarget);
-    view.querySelector('[data-copy-react]').onclick = e => copy(REACT_INSTALL(c.js), e.currentTarget);
+    view.querySelector('[data-copy-react]').onclick = e => copy(REACT_INSTALL(c), e.currentTarget);
     wireCode(view);
     window.AUI && AUI.init(view);
   }
