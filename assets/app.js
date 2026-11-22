@@ -10,8 +10,7 @@
   function buildNav(){
     let h = `<a class="nav-top" href="#/" data-route="/">總覽</a>`;
     h += `<a class="nav-top" href="flutter-demo/" target="_blank" rel="noopener">Flutter 範例 ↗</a>`;
-    h += `<div class="nav-sec">主題<em>${THEMES.length}</em></div><div class="ng"><ul><li data-search="主題總覽 themes"><a href="#/s" data-route="/s">主題總覽<span class="en">All themes</span></a></li>${THEMES.map(t =>
-      `<li data-search="${esc((t.name + ' ' + t.en + ' ' + t.tagline + ' ' + t.fit.join(' ')).toLowerCase())}"><a href="#/s/${t.id}" data-route="/s/${t.id}">${t.name}<span class="en">${t.en}</span></a></li>`).join('')}</ul></div>`;
+    h += `<div class="nav-sec">主題<em>${THEMES.length}</em></div><div class="ng"><ul><li data-search="主題總覽 themes"><a href="#/s" data-route="/s">主題總覽<span class="en">All themes</span></a></li></ul></div>`;
     h += `<div class="nav-sec">元件<em>${COMPONENTS.length}</em></div>`;
     COMP_GROUPS.forEach(g => {
       const items = COMPONENTS.filter(c => c.group === g.id);
@@ -392,7 +391,7 @@ ${t.html.trim()}
     else if(m && m[1] === 's') m[2] ? pageTheme(m[2], m[3]) : pageThemes();
     else pageHome();
     buildToc();
-    nav.querySelectorAll('a[data-route]').forEach(a => a.classList.toggle('active', a.dataset.route === (m ? r.replace(/^(\/s\/[\w-]+)\/.*/, '$1') : '/')));
+    nav.querySelectorAll('a[data-route]').forEach(a => a.classList.toggle('active', a.dataset.route === (m ? r.replace(/^\/s\/.*/, '/s') : '/')));
     const act = nav.querySelector('a.active'); act && act.scrollIntoView({block:'nearest'});
     window.scrollTo(0, 0);
     document.body.classList.remove('nav-open');
