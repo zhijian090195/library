@@ -711,3 +711,26 @@ body[data-page="home"] .grid{grid-template-columns:repeat(auto-fill,minmax(max(2
 .th-pick select{width:auto}
 .th-frame{display:block;width:100%;max-width:100%;height:640px;margin:0 auto;border:0;border-radius:10px;background:#fff;box-shadow:0 10px 30px -14px rgba(23,63,80,.4);transition:width .35s cubic-bezier(.22,1,.36,1)}
 @media (prefers-reduced-motion:reduce){.th-frame{transition:none}}
+
+/* 主題總覽：選主題，所有示範頁一起換 */
+.th-switch{position:sticky;top:0;z-index:5;margin:var(--sp-5) calc(-1 * var(--sp-3)) 0;padding:var(--sp-3);background:var(--bg,#f5f7f8);border-bottom:1px solid var(--line,#e3e6ea)}
+.th-chips{display:flex;flex-wrap:wrap;gap:8px}
+.th-chip{padding:7px 14px;border:1.5px solid var(--line,#d5dde1);border-radius:999px;background:var(--surface,#fff);color:var(--ink,#173f50);font:inherit;font-size:14px;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s,transform .16s cubic-bezier(.22,1,.36,1)}
+.th-chip:hover{border-color:var(--ink,#173f50)}
+.th-chip:active{transform:scale(.96)}
+.th-chip.on{background:#173f50;border-color:#173f50;color:#fff}
+.th-chip:focus-visible{outline:3px solid #fc5454;outline-offset:2px}
+.th-switch-row{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-3);margin-top:var(--sp-3)}
+.th-now{margin:0 auto 0 0;font-size:14px;color:var(--ink-2)}
+.th-pages{margin-top:var(--sp-5)}
+.th-pages .th-mini{height:1600px}
+.th-pages .th-thumb{aspect-ratio:4/5}
+@media (prefers-reduced-motion:reduce){.th-chip{transition:none}}
+@media (max-width:760px){
+  .th-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1 * var(--sp-3));padding:0 var(--sp-3)}
+  .th-chips::-webkit-scrollbar{display:none}
+  .th-chip{flex:none}
+  .th-now{display:none}
+  .th-switch-row{justify-content:space-between}
+  .th-switch{top:56px}
+}

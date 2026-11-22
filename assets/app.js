@@ -141,12 +141,10 @@ ${sn.js}
     view.innerHTML = `
       <header class="hero">
         <div class="eyebrow">AICDE Design Library</div>
-        <h1>元件、動畫與視覺<br>的 <span>設計</span> 參考庫</h1>
+        <h1>會動的<span>設計</span>，<br>拿去就能用</h1>
         <p>AICDE 風格的原生 HTML/CSS 元件庫，加上做網頁常用的動畫與設計方法。每個項目都有可操作的範例，整理好的頁面附上可以直接複製的程式碼。</p>
         <div class="stats"><div><b>${COMPONENTS.length}</b>元件</div><div><b>${MOTIONS.length}</b>動畫</div><div><b>${Object.keys(SNIPPETS).length}</b>附程式碼</div><div><b>0</b>建置工具</div></div>
       </header>
-      <section class="group" data-group="components"><div class="group-h"><div><h2>元件</h2><p>引入一份 CSS，複製 HTML 就能用。</p></div><span class="num">${String(COMPONENTS.length).padStart(2,'0')} COMPONENTS</span></div>
-        <div class="grid">${COMPONENTS.map(c => `<a class="card comp-card" href="#/c/${c.id}" data-search="${esc((c.name + ' ' + c.en + ' ' + c.desc).toLowerCase())}"><div class="stage comp-stage"><div class="comp-fit">${c.demos[0].html.replace(/<a\b/g, '<span').replace(/<\/a>/g, '</span>')}</div></div><div class="meta"><h3>${c.name} <span class="en">${c.en}</span></h3><p>${esc(c.desc)}</p></div></a>`).join('')}</div></section>
       ${GROUPS.map(g => {
         const items = MOTIONS.filter(s => s.group === g.id);
         return `<section class="group" data-group="${g.id}"><div class="group-h"><div><h2>${g.name}</h2><p>${g.desc}</p></div><span class="num">${String(items.length).padStart(2,'0')} MOTIONS</span></div><div class="grid">${items.map(s => `
@@ -156,6 +154,8 @@ ${sn.js}
               <div class="meta-foot"><div class="tags">${s.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div><a class="more" href="#/a/${slug(s.id)}">${SNIPPETS[s.id] ? '程式碼 →' : '查看 →'}</a></div></div>
           </article>`).join('')}</div></section>`;
       }).join('')}
+      <section class="group" data-group="components"><div class="group-h"><div><h2>元件</h2><p>引入一份 CSS，複製 HTML 就能用。</p></div><span class="num">${String(COMPONENTS.length).padStart(2,'0')} COMPONENTS</span></div>
+        <div class="grid">${COMPONENTS.map(c => `<a class="card comp-card" href="#/c/${c.id}" data-search="${esc((c.name + ' ' + c.en + ' ' + c.desc).toLowerCase())}"><div class="stage comp-stage"><div class="comp-fit">${c.demos[0].html.replace(/<a\b/g, '<span').replace(/<\/a>/g, '</span>')}</div></div><div class="meta"><h3>${c.name} <span class="en">${c.en}</span></h3><p>${esc(c.desc)}</p></div></a>`).join('')}</div></section>
       <div class="empty" id="empty">找不到符合的項目，換個關鍵字試試。</div>`;
     view.querySelectorAll('.card[data-id]').forEach(el => mountDemo(el.querySelector('.stage'), MOTIONS.find(s => s.id === el.dataset.id)));
     view.querySelectorAll('.comp-stage').forEach(st => { st.inert = true; st.querySelectorAll('dialog').forEach(d => d.remove()); });
@@ -283,21 +283,43 @@ ${t.html.trim()}
 
   /* ============ 頁面：主題總覽 ============ */
   function pageThemes(){
-    const page = showcases()[0];
+    const pages = showcases();
+    let cur = THEMES.find(t => (t.css || '') === (root.dataset.themeStyle || '')) || THEMES[0], dark = siteDark();
     view.innerHTML = `<div class="doc-wrap tpl-wrap"><article class="doc">
       <div class="crumb"><a href="#/">總覽</a> / 主題</div>
       <h1>主題 <span class="en">Themes</span></h1>
-      <p class="lead">同一套元件，換一個屬性就是不同的風格。下面每張卡片都是同一頁「${esc(page.name)}」，分別套上 15 種主題，點進去可以看完整頁面和其他示範頁。</p>
-      <div class="th-grid">${THEMES.map(t => `<a class="th-card" href="#/s/${t.id}">
-        <div class="th-thumb"><iframe class="th-mini" title="${esc(t.name)} 縮圖" loading="lazy" tabindex="-1" aria-hidden="true" data-theme-id="${t.id}"></iframe></div>
-        <div class="th-info"><b>${t.name}<span class="en">${t.en}</span></b><p>${esc(t.tagline)}</p>
-        <div class="th-traits">${t.traits.map(x => `<span>${esc(x)}</span>`).join('')}</div></div></a>`).join('')}</div>
+      <p class="lead">同一套元件，換一個屬性就是不同的風格。選一個主題，下面 ${pages.length} 個示範頁會一起換。</p>
+      <div class="th-switch">
+        <div class="th-chips" role="radiogroup" aria-label="主題">${THEMES.map(t => `<button type="button" class="th-chip" role="radio" data-id="${t.id}">${t.name}</button>`).join('')}</div>
+        <div class="th-switch-row">
+          <div class="a-segmented" role="radiogroup" aria-label="深淺色">
+            <label><input type="radio" name="thd" value="0" ${dark ? '' : 'checked'}><span>淺色</span></label><label><input type="radio" name="thd" value="1" ${dark ? 'checked' : ''}><span>深色</span></label>
+          </div>
+          <p class="th-now"></p>
+          <a class="a-btn a-btn--outline a-btn--sm th-more" href="#">這個主題的說明 →</a>
+        </div>
+      </div>
+      <div class="th-grid th-pages">${pages.map(p => `<a class="th-card" data-page="${p.id}" href="#">
+        <div class="th-thumb"><iframe class="th-mini" title="${esc(p.name)} 預覽" tabindex="-1" aria-hidden="true"></iframe></div>
+        <div class="th-info"><b>${esc(p.name)}<span class="en">${esc(p.en)}</span></b></div></a>`).join('')}</div>
     </article></div>`;
-    const dark = siteDark();
-    view.querySelectorAll('.th-mini').forEach(f => {
-      const t = THEMES.find(x => x.id === f.dataset.themeId);
-      f.srcdoc = withAttrs(tplDoc(page, ASSETS()), themeAttrs(t, dark));
-    });
+    const frames = [...view.querySelectorAll('.th-mini')];
+    // 只在換主題時改 <html> 的屬性，不重新載入，所以會瞬間一起換
+    const paint = () => {
+      view.querySelectorAll('.th-chip').forEach(c => { const on = c.dataset.id === cur.id; c.classList.toggle('on', on); c.setAttribute('aria-checked', on); });
+      view.querySelector('.th-now').textContent = cur.tagline;
+      view.querySelector('.th-more').href = `#/s/${cur.id}`;
+      view.querySelectorAll('.th-pages .th-card').forEach(c => c.href = `#/s/${cur.id}/${c.dataset.page}`);
+      frames.forEach(f => {
+        const el = f.contentDocument && f.contentDocument.documentElement; if(!el) return;
+        if(cur.css) el.dataset.themeStyle = cur.css; else delete el.dataset.themeStyle;
+        el.dataset.theme = dark ? 'dark' : 'light';
+      });
+    };
+    frames.forEach((f, i) => { f.onload = paint; f.srcdoc = withAttrs(tplDoc(pages[i], ASSETS()), themeAttrs(cur, dark)); });
+    view.querySelectorAll('.th-chip').forEach(c => c.onclick = () => { cur = THEMES.find(t => t.id === c.dataset.id); paint(); });
+    view.querySelectorAll('input[name=thd]').forEach(r => r.onchange = () => { dark = r.value === '1'; paint(); });
+    paint();
     fitMinis();
   }
   function fitMinis(){
@@ -306,11 +328,11 @@ ${t.html.trim()}
   addEventListener('resize', () => requestAnimationFrame(fitMinis));
 
   /* ============ 頁面：單一主題 ============ */
-  function pageTheme(id){
+  function pageTheme(id, pageId){
     const t = THEMES.find(x => x.id === id); if(!t) return notFound();
     const i = THEMES.indexOf(t), prev = THEMES[i - 1], next = THEMES[i + 1];
     const pages = showcases();
-    let page = pages[0], dark = siteDark();
+    let page = pages.find(p => p.id === pageId) || pages[0], dark = siteDark();
     const attr = t.css ? ` data-theme-style="${t.css}"` : '';
     const codes = [
       ['HTML', `<!-- 整個網站 -->\n<html${attr || ''}>\n\n<!-- 或只套在某個區塊 -->\n<section${attr || ' '}>…</section>${t.css ? '' : '\n\n<!-- 預設主題不需要加屬性 -->'}`],
@@ -323,7 +345,7 @@ ${t.html.trim()}
       <p class="lead">${esc(t.tagline)}</p>
       <div class="th-meta"><div><small>適合</small>${t.fit.map(x => `<span class="a-tag">${esc(x)}</span>`).join('')}</div><div><small>特色</small>${t.traits.map(x => `<span class="a-tag a-tag--outline">${esc(x)}</span>`).join('')}</div></div>
       <div class="tpl-bar">
-        <label class="th-pick"><span>示範頁</span><select class="a-input a-select a-input--sm th-page">${pages.map(p => `<option value="${p.id}">${esc(p.name)}</option>`).join('')}</select></label>
+        <label class="th-pick"><span>示範頁</span><select class="a-input a-select a-input--sm th-page">${pages.map(p => `<option value="${p.id}"${p === page ? ' selected' : ''}>${esc(p.name)}</option>`).join('')}</select></label>
         <div class="a-segmented" role="radiogroup" aria-label="預覽寬度">
           <label><input type="radio" name="tplw" value="100%" checked><span>桌面</span></label><label><input type="radio" name="tplw" value="820px"><span>平板</span></label><label><input type="radio" name="tplw" value="390px"><span>手機</span></label>
         </div>
@@ -363,14 +385,14 @@ ${t.html.trim()}
   function route(){
     const r = location.hash.replace(/^#/, '') || '/';
     timers.forEach(clearInterval); timers.clear();
-    const m = r.match(/^\/(a|c|s)(?:\/([\w-]+))?$/);
+    const m = r.match(/^\/(a|c|s)(?:\/([\w-]+))?(?:\/([\w-]+))?$/);
     document.body.dataset.page = m ? 'doc' : 'home';
     if(m && m[1] === 'a') pageMotion(m[2] || '');
     else if(m && m[1] === 'c') pageComponent(m[2] || '');
-    else if(m && m[1] === 's') m[2] ? pageTheme(m[2]) : pageThemes();
+    else if(m && m[1] === 's') m[2] ? pageTheme(m[2], m[3]) : pageThemes();
     else pageHome();
     buildToc();
-    nav.querySelectorAll('a[data-route]').forEach(a => a.classList.toggle('active', a.dataset.route === (m ? r : '/')));
+    nav.querySelectorAll('a[data-route]').forEach(a => a.classList.toggle('active', a.dataset.route === (m ? r.replace(/^(\/s\/[\w-]+)\/.*/, '$1') : '/')));
     const act = nav.querySelector('a.active'); act && act.scrollIntoView({block:'nearest'});
     window.scrollTo(0, 0);
     document.body.classList.remove('nav-open');
