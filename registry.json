@@ -1,0 +1,49 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "aicde-ui",
+  "homepage": "https://zhijian090195.github.io/library/",
+  "items": [
+    {
+      "name": "aicde-ui",
+      "type": "registry:file",
+      "title": "AICDE UI（網頁版）",
+      "description": "AICDE 元件庫的網頁版：59 個元件、15 種主題、深色模式。一份 CSS 加一份 JS，沒有依賴。",
+      "categories": [
+        "components",
+        "design-system"
+      ],
+      "files": [
+        {
+          "path": "assets/aicde-ui.css",
+          "type": "registry:file",
+          "target": "~/public/aicde-ui/aicde-ui.css"
+        },
+        {
+          "path": "assets/aicde-ui.js",
+          "type": "registry:file",
+          "target": "~/public/aicde-ui/aicde-ui.js"
+        }
+      ],
+      "docs": "用 <link rel=\"stylesheet\" href=\"/aicde-ui/aicde-ui.css\"> 和 <script src=\"/aicde-ui/aicde-ui.js\" defer></script> 載入，元件用 a- 開頭的 class。換主題在 <html> 加 data-theme-style。文件：https://zhijian090195.github.io/library/"
+    },
+    {
+      "name": "fx",
+      "type": "registry:file",
+      "title": "AICDE FX 打擊特效",
+      "description": "讓 AICDE 元件有打擊感：彈簧壓扁、回彈過頭，加上一張蓋在頁面上的 canvas 畫出爆炸、煙霧、火花、刀光和擬聲字。一個檔案，沒有依賴；減少動態效果時自動關閉。",
+      "categories": [
+        "animation",
+        "effects"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "assets/aicde-fx.js",
+          "type": "registry:file",
+          "target": "~/public/aicde-ui/aicde-fx.js"
+        }
+      ],
+      "docs": "先裝 aicde-ui，再用 <script src=\"/aicde-ui/aicde-fx.js\" defer></script> 載入，在 <html> 或任何容器加 data-fx 開啟。成功時呼叫 AUIFX.done(el)。文件：https://zhijian090195.github.io/library/#/fx"
+    }
+  ]
+}

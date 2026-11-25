@@ -9,6 +9,7 @@
   /* ============ Sidebar ============ */
   function buildNav(){
     let h = `<a class="nav-top" href="#/" data-route="/">總覽</a>`;
+    h += `<a class="nav-top" href="#/fx" data-route="/fx">打擊特效 <span class="nav-new">FX</span></a>`;
     h += `<a class="nav-top" href="flutter-demo/" target="_blank" rel="noopener">Flutter 範例 ↗</a>`;
     h += `<div class="nav-sec">主題<em>${THEMES.length}</em></div><div class="ng"><ul><li data-search="主題總覽 themes"><a href="#/s" data-route="/s">主題總覽<span class="en">All themes</span></a></li></ul></div>`;
     h += `<div class="nav-sec">元件<em>${COMPONENTS.length}</em></div>`;
@@ -142,6 +143,7 @@ ${sn.js}
         <div class="eyebrow">AICDE Design Library</div>
         <h1>會動的<span>設計</span>，<br>拿去就能用</h1>
         <p>AICDE 風格的原生 HTML/CSS 元件庫，加上做網頁常用的動畫與設計方法。每個項目都有可操作的範例，整理好的頁面附上可以直接複製的程式碼。</p>
+        <p class="hero-cta"><a class="a-btn a-btn--primary a-btn--lg" href="#/fx">試玩打擊特效</a><a class="a-btn a-btn--outline a-btn--lg" href="llms.txt" target="_blank" rel="noopener">給 AI 看的說明 llms.txt</a></p>
         <div class="stats"><div><b>${COMPONENTS.length}</b>元件</div><div><b>${MOTIONS.length}</b>動畫</div><div><b>${Object.keys(SNIPPETS).length}</b>附程式碼</div><div><b>0</b>建置工具</div></div>
       </header>
       ${GROUPS.map(g => {
@@ -226,6 +228,8 @@ ${sn.js}
       <div class="install"><pre>${esc(INSTALL)}</pre><button class="act" data-copy-install>複製</button></div>
       <p class="install-note install-note--react">用 React／Next.js 的話，直接用 npm 安裝。元件會自己處理點擊、開關這些互動，不用另外引入 JS。參數說明見 <a href="https://www.npmjs.com/package/aicde-ui" target="_blank" rel="noopener">npm 頁面</a>。</p>
       <div class="install"><pre>${esc(REACT_INSTALL(c))}</pre><button class="act" data-copy-react>複製</button></div>
+      <div class="ai-row"><button class="act" data-copy-prompt>複製給 AI 的提示詞</button><span>貼給 Claude Code、Cursor 這類寫程式的 AI，它會照正確的方式把元件接進你的專案。</span></div>
+      ${FX_IDS.has(c.id) ? `<p class="install-note fx-note">這個元件有<a href="#/fx">打擊特效</a>：引入 <code>aicde-fx.js</code>，在外層加上 <code>data-fx</code> 就會開啟。</p>` : ''}
 
       <h2 id="examples">範例</h2>
       ${c.demos.map((d, k) => `<div class="demo-box" id="ex-${k}" data-toc="${esc(d.title)}">
@@ -242,7 +246,104 @@ ${sn.js}
     </article><aside class="toc" id="toc"></aside></div>`;
     view.querySelector('[data-copy-install]').onclick = e => copy(INSTALL, e.currentTarget);
     view.querySelector('[data-copy-react]').onclick = e => copy(REACT_INSTALL(c), e.currentTarget);
+    view.querySelector('[data-copy-prompt]').onclick = e => copy(compPrompt(c), e.currentTarget);
     wireCode(view);
+    window.AUI && AUI.init(view);
+  }
+
+  /* ============ 給 AI 的提示詞 ============ */
+  const SITE = 'https://zhijian090195.github.io/library/';
+  const plain = html => html.replace(/<svg[\s\S]*?<\/svg>/g, '<svg>…</svg>');
+  function compPrompt(c){
+    const fx = FX_IDS.has(c.id);
+    return [
+      `幫我在專案裡加上 AICDE 的「${c.name}」(${c.en}) 元件。`,
+      ``,
+      `1. 先看我的專案是一般網頁還是 React／Next.js。`,
+      `   - 一般網頁：在 <head> 加上 ${SITE}assets/aicde-ui.css${c.js || fx ? `，以及 <script src="${SITE}assets/aicde-ui.js" defer></script>` : '（這個元件只需要 CSS）'}${fx ? `、<script src="${SITE}assets/aicde-fx.js" defer></script>` : ''}。可以下載到專案裡，但不要改寫或拆開這些檔案。`,
+      `   - React：npm install aicde-ui，在入口檔引入一次 import 'aicde-ui/style.css'${fx ? `，要特效的話再 import 'aicde-ui/fx'` : ''}，元件從 'aicde-ui' 引入（${REACT_NAME[c.id] || c.en.replace(/\s/g, '')}）。`,
+      `2. 網頁版的寫法照這段 HTML，class 名稱不要改：`,
+      plain(c.demos[0].html).split('\n').map(l => '   ' + l).join('\n'),
+      `3. 可用的 class 和屬性：`,
+      ...c.api.map(r => `   - ${r[0]}：${r[1]}${r[2] && r[2] !== '—' ? `（預設 ${r[2]}）` : ''}`),
+      ...(fx ? [`4. 打擊特效：在要有特效的範圍加 data-fx（整個網站就加在 <html>；React 用 <ThemeProvider fx>）。特效畫在一張蓋在頁面上、不擋點擊的 canvas，開啟「減少動態效果」時自動關閉。不要擬聲字就加 data-fx-word="off"。`] : []),
+      `${fx ? 5 : 4}. 換風格用 data-theme-style（例如 cute、clinical），深淺色用 data-theme="dark"／"light"。`,
+      ``,
+      `完成後告訴我放在哪裡、哪段程式在處理它的事件。如果外觀需要改，先跟我說，不要直接改元件庫的檔案。`,
+      `完整說明：${SITE}llms.txt ・ 元件文件：${SITE}#/c/${c.id}`
+    ].join('\n');
+  }
+
+  /* ============ 頁面：打擊特效 ============ */
+  const FX_IDS = new Set(FX_ITEMS.map(x => x.id));
+  const FX_HEAD = `<link rel="stylesheet" href="${SITE}assets/aicde-ui.css">\n<script src="${SITE}assets/aicde-ui.js" defer></` + `script>\n<script src="${SITE}assets/aicde-fx.js" defer></` + `script>\n\n<!-- 加上 data-fx，裡面的元件就有打擊特效 -->\n<html data-fx>`;
+  const FX_REACT = `npm install aicde-ui\n\n// 入口檔案引入一次\nimport 'aicde-ui/style.css';\nimport 'aicde-ui/fx';\n\n// 包在 ThemeProvider 裡，加上 fx\n<ThemeProvider fx>\n  <App />\n</ThemeProvider>`;
+  function fxPrompt(it){
+    const c = COMPONENTS.find(x => x.id === it.id);
+    return [
+      `幫我在專案裡加上有「打擊特效」的 AICDE ${it.name}。特效是 aicde-fx.js 這個單獨的檔案，沒有其他依賴。`,
+      ``,
+      `1. 一般網頁：在 <head> 加上 ${SITE}assets/aicde-ui.css、${SITE}assets/aicde-ui.js 和 ${SITE}assets/aicde-fx.js（用一般的 script 標籤，不要用 type="module"）。可以下載到專案裡，但不要改寫或拆開這些檔案。`,
+      `   React／Next.js：npm install aicde-ui，入口檔引入 'aicde-ui/style.css' 和 'aicde-ui/fx'，用 <ThemeProvider fx> 包住要有特效的範圍。`,
+      `2. 一般網頁在要有特效的範圍加上 data-fx 屬性（整個網站就加在 <html>）。data-fx="off" 可以在裡面再關掉某一塊。`,
+      `3. 元件寫法（class 名稱不要改）：`,
+      plain(it.html).split('\n').map(l => '   ' + l).join('\n'),
+      ...it.wire.map((l, i) => `${i + 4}. ${l}`),
+      `${it.wire.length + 4}. 特效畫在一張蓋在頁面上、不擋點擊的 canvas，所以會飛出元件外面。開啟「減少動態效果」時會全部關掉。顏色跟著主題，也可以用 --a-fx-hot、--a-fx-line、--a-fx-cloud、--a-fx-spark 覆寫；不要擬聲字就加 data-fx-word="off"，或用 data-fx-word="字" 換成別的字。`,
+      ``,
+      `完成後告訴我放在哪裡、哪段程式在處理它的事件。如果特效需要看起來不一樣，先跟我說，不要直接改 aicde-fx.js。`,
+      `完整說明：${SITE}llms.txt${c ? ` ・ 元件文件：${SITE}#/c/${c.id}` : ''}`
+    ].join('\n');
+  }
+  function pageFx(){
+    view.innerHTML = `<div class="doc-wrap tpl-wrap"><article class="doc fx-page">
+      <div class="crumb"><a href="#/">總覽</a> / 打擊特效</div>
+      <h1>打擊特效 <span class="en">FX</span></h1>
+      <p class="lead">平常是普通的元件，一按下去就有打擊感：用彈簧壓扁、回彈過頭，旁邊冒出爆炸、煙霧、火花、刀光和擬聲字。全部畫在一張蓋在頁面上的 canvas，不擋點擊，也不用改元件本身的寫法。</p>
+      <div class="fx-bar">
+        <label class="a-switch"><input type="checkbox" id="fxWords" checked><span class="a-switch__track"><span class="a-switch__thumb"></span></span>擬聲字</label>
+        <span class="fx-bar-note">每個元件都能直接玩。換左下角的主題，特效顏色會跟著換。</span>
+      </div>
+      <div class="fx-grid" id="fxGrid">${FX_ITEMS.map((it, k) => `
+        <section class="fx-card${it.wide ? ' wide' : ''}" data-k="${k}">
+          <h2>${esc(it.name)}<span>${esc(it.tag)}</span></h2>
+          <p class="fx-how">${esc(it.how)}</p>
+          <div class="fx-stage">${it.html}</div>
+          <p class="fx-said" aria-live="polite"></p>
+          <div class="fx-acts">
+            <a class="act" href="#/c/${it.id}">文件</a>
+            <button class="act" type="button" data-copy="html">複製 HTML</button>
+            <button class="act" type="button" data-copy="react">複製 React</button>
+            <button class="act act-ai" type="button" data-copy="prompt">複製給 AI 的提示詞</button>
+          </div>
+        </section>`).join('')}</div>
+
+      <h2 id="fx-install">怎麼開啟</h2>
+      <p class="install-note">一般網頁：多引入一個 <code>aicde-fx.js</code>，再加上 <code>data-fx</code>。沒有 <code>data-fx</code> 的地方完全不受影響。</p>
+      <div class="install"><pre>${esc(FX_HEAD)}</pre><button class="act" data-copy-head>複製</button></div>
+      <p class="install-note install-note--react">React／Next.js：</p>
+      <div class="install"><pre>${esc(FX_REACT)}</pre><button class="act" data-copy-fxreact>複製</button></div>
+
+      <h2 id="fx-api">API</h2>
+      <div class="table-wrap"><table class="api"><thead><tr><th>屬性／方法</th><th>說明</th><th>預設</th></tr></thead><tbody>${FX_API.map(r => `<tr><td><code>${esc(r[0])}</code></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('')}</tbody></table></div>
+
+      <h2 id="fx-limits">限制</h2>
+      <ul class="points">${FX_LIMITS.map(l => `<li>${esc(l)}</li>`).join('')}</ul>
+    </article><aside class="toc" id="toc"></aside></div>`;
+    const grid = view.querySelector('#fxGrid');
+    grid.querySelectorAll('.fx-card').forEach(card => {
+      const it = FX_ITEMS[+card.dataset.k], said = card.querySelector('.fx-said'), say = t => { said.textContent = t; };
+      const sayCopy = (text, btn, msg) => copy(text, btn).then(() => say(msg));
+      card.querySelector('[data-copy=html]').onclick = e => sayCopy(it.html, e.currentTarget, '已複製 HTML');
+      card.querySelector('[data-copy=react]').onclick = e => sayCopy(it.react, e.currentTarget, '已複製 React 寫法');
+      card.querySelector('[data-copy=prompt]').onclick = e => sayCopy(fxPrompt(it), e.currentTarget, '已複製提示詞，貼給你的 AI 就好');
+      it.wireDemo && it.wireDemo(card.querySelector('.fx-stage'), say);
+    });
+    const words = view.querySelector('#fxWords');
+    const syncWords = () => { if(words.checked) grid.removeAttribute('data-fx-word'); else grid.setAttribute('data-fx-word', 'off'); };
+    words.onchange = syncWords;
+    view.querySelector('[data-copy-head]').onclick = e => copy(FX_HEAD, e.currentTarget);
+    view.querySelector('[data-copy-fxreact]').onclick = e => copy(FX_REACT, e.currentTarget);
     window.AUI && AUI.init(view);
   }
 
@@ -384,11 +485,12 @@ ${t.html.trim()}
   function route(){
     const r = location.hash.replace(/^#/, '') || '/';
     timers.forEach(clearInterval); timers.clear();
-    const m = r.match(/^\/(a|c|s)(?:\/([\w-]+))?(?:\/([\w-]+))?$/);
+    const m = r.match(/^\/(a|c|s|fx)(?:\/([\w-]+))?(?:\/([\w-]+))?$/);
     document.body.dataset.page = m ? 'doc' : 'home';
     if(m && m[1] === 'a') pageMotion(m[2] || '');
     else if(m && m[1] === 'c') pageComponent(m[2] || '');
     else if(m && m[1] === 's') m[2] ? pageTheme(m[2], m[3]) : pageThemes();
+    else if(m && m[1] === 'fx') pageFx();
     else pageHome();
     buildToc();
     nav.querySelectorAll('a[data-route]').forEach(a => a.classList.toggle('active', a.dataset.route === (m ? r.replace(/^\/s\/.*/, '/s') : '/')));
@@ -427,6 +529,11 @@ ${t.html.trim()}
     root.dataset.theme = dark ? 'light' : 'dark';
     try{ localStorage.setItem('theme', root.dataset.theme); }catch(e){}
   };
+
+  const fxBtn = $('#fxBtn');
+  const setFx = on => { root.setAttribute('data-fx', on ? '' : 'off'); fxBtn.setAttribute('aria-pressed', on); fxBtn.textContent = on ? '✦ 特效：開' : '✦ 特效：關'; };
+  try{ setFx(localStorage.getItem('fx') !== 'off'); }catch(e){ setFx(true); }
+  fxBtn.onclick = () => { const on = root.getAttribute('data-fx') === 'off'; setFx(on); try{ localStorage.setItem('fx', on ? 'on' : 'off'); }catch(e){} };
 
   const sel = $('#styleSel');
   const setStyle = v => { if(v) root.dataset.themeStyle = v; else delete root.dataset.themeStyle; requestAnimationFrame(fitThumbs); };

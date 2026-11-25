@@ -8,14 +8,17 @@ export interface ThemeProviderProps extends React.ComponentPropsWithoutRef<'div'
   theme?: ThemeStyle;
   /** 深淺色；system 跟著系統設定 */
   mode?: 'light' | 'dark' | 'system';
+  /** 開啟打擊特效（需要另外 import 'aicde-ui/fx'）；false 會在外層已開啟時關掉這一塊 */
+  fx?: boolean;
 }
 
 /** 用 data-theme-style／data-theme 套用主題，只影響包在裡面的元件 */
-export function ThemeProvider({ theme = 'default', mode = 'system', children, ...rest }: ThemeProviderProps) {
+export function ThemeProvider({ theme = 'default', mode = 'system', fx, children, ...rest }: ThemeProviderProps) {
   return (
     <div
       data-theme-style={theme === 'default' ? undefined : theme}
       data-theme={mode === 'system' ? undefined : mode}
+      data-fx={fx === undefined ? undefined : fx ? '' : 'off'}
       {...rest}
     >
       {children}

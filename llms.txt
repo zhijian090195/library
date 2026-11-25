@@ -1,0 +1,87 @@
+# AICDE Design Library
+
+> AICDE 風格的元件庫：59 個元件、15 種主題、深色模式，網頁（原生 HTML/CSS/JS）、React、Flutter 三個版本長得一樣。另有可開關的「打擊特效」（aicde-fx.js）：元件一按下去就用彈簧壓扁、回彈，旁邊冒出爆炸、煙霧、火花和擬聲字。MIT 授權（AICDE 名稱和 logo 除外）。
+
+文件網站：https://zhijian090195.github.io/library/
+原始碼：https://github.com/zhijian090195/library
+npm（React）：https://www.npmjs.com/package/aicde-ui
+
+## 怎麼接進專案（給 AI agent）
+
+- 一般網頁：載入 https://zhijian090195.github.io/library/assets/aicde-ui.css 和 https://zhijian090195.github.io/library/assets/aicde-ui.js（一般的 script 標籤，加 defer）。可以下載到專案裡，但不要改寫或拆開這些檔案。元件用 a- 開頭的 class，照文件的 HTML 寫，class 名稱不要改。
+- React／Next.js：`npm install aicde-ui`，入口檔 `import 'aicde-ui/style.css'`，元件從 'aicde-ui' 引入。
+- Flutter：pubspec.yaml 用 git 依賴，url https://github.com/zhijian090195/library.git，path flutter。
+- 主題：`<html data-theme-style="cute">`（clean、paper、ink、soft、riso、brutal、stitch、ticket、block、blueprint、clinical、cute、finance、editorial；不寫是預設的紙雕）。React 用 `<ThemeProvider theme="cute">`。深淺色用 data-theme="dark"／"light"。
+- 每個元件頁都有「複製給 AI 的提示詞」按鈕，內容就是該元件的接法。
+
+## 打擊特效 aicde-fx.js
+
+- [aicde-fx.js](https://zhijian090195.github.io/library/assets/aicde-fx.js)：一個檔案，沒有依賴。載入後在 <html> 或任何容器加 `data-fx` 就開啟，`data-fx="off"` 在裡面關掉一塊，`data-fx-word="off"` 不出擬聲字。
+- React：`import 'aicde-ui/fx'`，用 `<ThemeProvider fx>` 包住要有特效的範圍；成功時 `fxDone(el)`（從 'aicde-ui/fx' 引入）。
+- 一般網頁成功時呼叫 `AUIFX.done(el)`，會在元件上蓋一個打勾。只在操作真的成功時呼叫。
+- 有特效的元件：按鈕、開關、核取方塊、單選、評分、滑桿、輸入框、標籤頁、進度條、通知。
+- 顏色跟著主題，可用 --a-fx-hot、--a-fx-line、--a-fx-cloud、--a-fx-spark 覆寫。開啟「減少動態效果」時全部關閉。
+- 線上試玩：https://zhijian090195.github.io/library/#/fx
+- shadcn CLI：`npx shadcn add zhijian090195/library/fx`（檔案放到 public/aicde-ui/）。
+
+## 元件
+
+- [分隔線 Divider](https://zhijian090195.github.io/library/#/c/divider): 區隔內容區塊。可以加文字，也可以直立放在文字之間。
+- [麵包屑 Breadcrumb](https://zhijian090195.github.io/library/#/c/breadcrumb): 顯示目前頁面在網站裡的位置，並能快速回到上層。
+- [步驟條 Steps](https://zhijian090195.github.io/library/#/c/steps): 把一個長流程拆成幾步，讓使用者知道現在在哪、還剩多少。
+- [多行輸入 Textarea](https://zhijian090195.github.io/library/#/c/textarea): 輸入較長的文字。設定 maxlength 時會自動顯示字數，接近上限時變紅。
+- [下拉選擇 Select](https://zhijian090195.github.io/library/#/c/select): 從固定選項中選一個。用原生 select，手機上會跳出系統的選擇器。
+- [核取方塊 Checkbox](https://zhijian090195.github.io/library/#/c/checkbox): 從多個選項中勾選任意幾個。按下時微縮，勾選後換成珊瑚紅。 有打擊特效。
+- [單選 Radio](https://zhijian090195.github.io/library/#/c/radio): 從幾個選項中只能選一個，所有選項同時攤開，一眼就能比較。 有打擊特效。
+- [分段控制器 Segmented](https://zhijian090195.github.io/library/#/c/segmented): 2–5 個短選項的單選，像按鈕群組。底層是 radio，可以直接放進表單。
+- [滑桿 Slider](https://zhijian090195.github.io/library/#/c/slider): 在一個範圍內拖曳選值。用原生 range，鍵盤方向鍵也能調整。 有打擊特效。
+- [標籤 Tag](https://zhijian090195.github.io/library/#/c/tag): 標示分類、狀態或關鍵字。可以加上關閉按鈕讓使用者移除。
+- [徽章 Badge](https://zhijian090195.github.io/library/#/c/badge): 在圖示或頭像右上角顯示數量或紅點，提醒有新內容。
+- [頭像 Avatar](https://zhijian090195.github.io/library/#/c/avatar): 代表使用者或團隊。沒有照片時顯示名字的第一個字。
+- [文字提示 Tooltip](https://zhijian090195.github.io/library/#/c/tooltip): 滑鼠停留或鍵盤聚焦時顯示簡短說明。純 CSS，只要加一個屬性。
+- [摺疊面板 Collapse](https://zhijian090195.github.io/library/#/c/collapse): 把次要內容收起來，需要時再展開。用原生 details，不需要 JS。
+- [表格 Table](https://zhijian090195.github.io/library/#/c/table): 比較多筆資料的多個欄位。數字靠右、等寬數字，方便上下對齊比較。
+- [空狀態 Empty](https://zhijian090195.github.io/library/#/c/empty): 沒有資料時告訴使用者發生了什麼，以及下一步可以做什麼。
+- [警示 Alert](https://zhijian090195.github.io/library/#/c/alert): 在頁面中顯示需要注意的訊息，會一直留在畫面上，直到問題解決。
+- [進度條 Progress](https://zhijian090195.github.io/library/#/c/progress): 顯示一個操作完成了多少。用 --v（0 到 1）控制進度，變化時平滑移動。 有打擊特效。
+- [骨架屏 Skeleton](https://zhijian090195.github.io/library/#/c/skeleton): 內容載入中時，先畫出大致的版面形狀，讓等待感覺比較短。
+- [載入中 Spinner](https://zhijian090195.github.io/library/#/c/spinner): 表示正在處理，但不知道要多久。適合小範圍、短時間的等待。
+- [側邊選單 Menu](https://zhijian090195.github.io/library/#/c/menu): 後台或文件網站的主要導覽。子選單用原生 details 展開，目前頁面用 aria-current 標記。
+- [日期時間 Date Picker](https://zhijian090195.github.io/library/#/c/date): 選日期或時間。用原生 input，手機會跳出系統的選擇器，鍵盤也能直接輸入。
+- [上傳 Upload](https://zhijian090195.github.io/library/#/c/upload): 點擊或把檔案拖進來上傳。拖進來時框線變珊瑚紅並微微放大，選好的檔案列在下方。
+- [評分 Rating](https://zhijian090195.github.io/library/#/c/rating): 用星星打分數。底層是 radio，純 CSS；滑過時預覽分數，按下時星星微縮。 有打擊特效。
+- [統計數值 Statistic](https://zhijian090195.github.io/library/#/c/statistic): 在儀表板顯示重點數字與變化。進到畫面時數字從 0 跳到目標值，只播一次。
+- [時間軸 Timeline](https://zhijian090195.github.io/library/#/c/timeline): 按時間順序列出事件，例如訂單進度或更新紀錄。
+- [列表 List](https://zhijian090195.github.io/library/#/c/list): 一列一筆資料：頭像、標題、說明、右側資訊。文字過長自動省略。
+- [描述列表 Descriptions](https://zhijian090195.github.io/library/#/c/descriptions): 成對顯示「欄位：值」，例如訂單資訊、個人資料。手機上自動變成單欄。
+- [鍵盤按鍵 Kbd](https://zhijian090195.github.io/library/#/c/kbd): 在說明文字中標示鍵盤快捷鍵，底部加厚模擬實體按鍵。
+- [抽屜 Drawer](https://zhijian090195.github.io/library/#/c/drawer): 從畫面側邊滑出的面板，放進一步的細節或表單，不用離開目前頁面。和對話框共用開關方式。
+- [彈出卡片 Popover](https://zhijian090195.github.io/library/#/c/popover): 點擊後在按鈕旁邊顯示的小卡片，可以放文字和按鈕。用原生 popover，點外面或按 Esc 自動關閉。
+- [結果頁 Result](https://zhijian090195.github.io/library/#/c/result): 流程結束時告訴使用者結果：成功、失敗或需要等待。圖示彈出後打勾逐筆畫出。
+- [懸浮按鈕 Float Button](https://zhijian090195.github.io/library/#/c/float-button): 固定在畫面角落的按鈕，放最常用的一個動作，或「回到頂部」。
+- [自動完成 Autocomplete](https://zhijian090195.github.io/library/#/c/autocomplete): 邊打字邊篩選建議，符合的字會標成珊瑚紅。可以用方向鍵選、Enter 確認。
+- [數字輸入 Input Number](https://zhijian090195.github.io/library/#/c/input-number): 用加減按鈕調整數字，也能直接輸入。到達上下限時按鈕自動停用。
+- [顏色選擇 Color Picker](https://zhijian090195.github.io/library/#/c/color): 選顏色。自由選色用原生色票，品牌色限定時用預設色票（純 CSS）。
+- [驗證碼 OTP Input](https://zhijian090195.github.io/library/#/c/otp): 輸入簡訊或信箱收到的驗證碼。打一位自動跳下一格，可以一次貼上整串，錯誤時左右搖晃。
+- [輪播 Carousel](https://zhijian090195.github.io/library/#/c/carousel): 在同一個位置輪流顯示多張內容。用 scroll-snap，手機可以直接滑動，滑到一半放開會自動對齊。
+- [日曆 Calendar](https://zhijian090195.github.io/library/#/c/calendar): 整個月份的日曆，可以切換月份與選日期。切換月份時日期往同方向滑入。
+- [樹狀結構 Tree](https://zhijian090195.github.io/library/#/c/tree): 有階層的資料，例如資料夾、組織架構。用巢狀 details，不需要 JS。
+- [圖片預覽 Image](https://zhijian090195.github.io/library/#/c/image): 點縮圖放大檢視。大圖從縮圖的位置長出來（FLIP 動畫），關閉時縮回原位。
+- [公告列 Banner](https://zhijian090195.github.io/library/#/c/banner): 放在頁面最上方的全站公告，例如新功能、維護通知。關閉時往上淡出。
+- [資料表格 Data Table](https://zhijian090195.github.io/library/#/c/data-table): 可以排序、搜尋、勾選的表格。排序時每一列從舊位置滑到新位置（FLIP），看得出資料怎麼移動。
+- [級聯選擇 Cascader](https://zhijian090195.github.io/library/#/c/cascader): 有階層的選項逐層選擇，例如縣市 → 區域。每選一層，右邊滑出下一欄。
+- [穿梭框 Transfer](https://zhijian090195.github.io/library/#/c/transfer): 在兩個列表之間移動項目，例如把成員加入專案。移過去的項目會淡入，標題顯示勾選數量。
+- [日期範圍 Range Picker](https://zhijian090195.github.io/library/#/c/range-picker): 在日曆上選開始和結束日期。選了開始日後，滑鼠移動時即時預覽範圍。
+- [標籤輸入 Tag Input](https://zhijian090195.github.io/library/#/c/tag-input): 輸入文字按 Enter 或逗號變成標籤。重複的標籤會搖一下提醒，Backspace 刪掉最後一個。
+- [指令面板 Command Palette](https://zhijian090195.github.io/library/#/c/command): 按 ⌘K（Windows 為 Ctrl+K）叫出搜尋框，輸入就能跳到頁面或執行動作，鍵盤全程操作。
+- [右鍵選單 Context Menu](https://zhijian090195.github.io/library/#/c/context-menu): 在指定區域按右鍵，在游標位置跳出選單。靠近畫面邊緣時自動往反方向展開。
+- [通知提醒框 Notification](https://zhijian090195.github.io/library/#/c/notification): 從右上角滑入的通知卡片，比 Toast 多了標題、說明和操作按鈕。新的在最上面，最多 3 則。
+- [按鈕 Button](https://zhijian090195.github.io/library/#/c/button): 觸發一個操作。主要按鈕用珊瑚紅，一個區塊最多一個；其他動作用次要、外框或文字按鈕。 有打擊特效。
+- [標籤頁 Tabs](https://zhijian090195.github.io/library/#/c/tabs): 在同一個區域切換不同內容。底線指示器用 transform 滑到選中的標籤，內容切換時輕微淡入。 有打擊特效。
+- [分頁 Pagination](https://zhijian090195.github.io/library/#/c/pagination): 把長列表分成多頁。只要寫總頁數和目前頁數，按鈕與省略號由 aicde-ui.js 產生。
+- [下拉選單 Dropdown](https://zhijian090195.github.io/library/#/c/dropdown): 把次要的操作收進選單。選單從觸發按鈕的位置長出來，點外面或按 Esc 關閉。
+- [輸入框 Input](https://zhijian090195.github.io/library/#/c/input): 讓使用者輸入文字。搭配 a-field 加上標籤與說明文字，錯誤時整組變紅。 有打擊特效。
+- [開關 Switch](https://zhijian090195.github.io/library/#/c/switch): 切換兩種狀態，切換後立即生效。底層是原生 checkbox，鍵盤與螢幕報讀器都能使用。 有打擊特效。
+- [卡片 Card](https://zhijian090195.github.io/library/#/c/card): 把一組相關資訊包在一起：圖片、標題、說明與操作。可點擊的卡片 hover 時浮起。
+- [對話框 Modal](https://zhijian090195.github.io/library/#/c/modal): 打斷目前流程，請使用者確認或補充資訊。用原生 dialog，焦點鎖定與 Esc 關閉都是瀏覽器內建的。
+- [通知 Toast](https://zhijian090195.github.io/library/#/c/toast): 操作完成後的短暫回饋，不打斷使用者。從右下角滑入，3.2 秒後自動消失，滑鼠停留時暫停。 有打擊特效。

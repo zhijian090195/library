@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-fx>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="assets/favicon.png" sizes="64x64" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<meta name="description" content="AICDE 設計系統：59 個元件、15 種主題，網頁、React、Flutter 三個版本，另附 36 個可直接操作的動畫範例。">
+<meta name="description" content="AICDE 設計系統：59 個元件、15 種主題，網頁、React、Flutter 三個版本，另附 36 個可直接操作的動畫範例，以及可以開關的打擊特效。">
 <meta name="theme-color" content="#173f50">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,7 @@
   <nav class="nav" id="nav"></nav>
   <div class="side-foot"><span id="sideCount"></span><select class="theme-btn theme-select" id="styleSel" aria-label="元件主題">
       <option value="">主題：紙雕分層（預設）</option><option value="clean">簡潔</option><option value="paper">暖紙雕</option><option value="ink">混合媒材</option><option value="soft">柔光立體</option><option value="riso">網點絲印</option><option value="brutal">新粗野</option><option value="stitch">手縫布藝</option><option value="ticket">水彩票根</option><option value="block">啞光積木</option><option value="blueprint">藍圖線稿</option><option value="clinical">醫療</option><option value="cute">可愛</option><option value="finance">金融</option><option value="editorial">編輯</option>
-    </select><button class="theme-btn" id="themeBtn">◐ 深淺色</button></div>
+    </select><button class="theme-btn" id="fxBtn" aria-pressed="true">✦ 特效：開</button><button class="theme-btn" id="themeBtn">◐ 深淺色</button></div>
 </aside>
 
 <div class="main">
@@ -39,6 +39,7 @@
 </div>
 
 <script src="assets/aicde-ui.js"></script>
+<script src="assets/aicde-fx.js"></script>
 <script src="assets/data.js"></script>
 <script src="assets/demos.js"></script>
 <script src="assets/docs.js"></script>
@@ -54,6 +55,7 @@
 <script src="assets/templates-a.js"></script>
 <script src="assets/templates-b.js"></script>
 <script src="assets/jsx.js"></script>
+<script src="assets/fx-data.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

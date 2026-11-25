@@ -25,7 +25,7 @@ jobs:
       - name: 只打包網站需要的檔案
         run: |
           mkdir _site
-          cp -r index.html .nojekyll assets flutter-demo _site/
+          cp -r index.html .nojekyll assets flutter-demo llms.txt registry.json _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

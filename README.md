@@ -20,6 +20,8 @@
 - **深色模式**：每種風格都有。
 - **三種寫法都能用**：一般網頁、React、Flutter（手機 App），三個版本長得一樣。
 - **好操作**：只用鍵盤也能操作，視障者用的讀屏軟體也念得出來。
+- **打擊特效**（可開關）：按鈕、開關、勾選框這些元件一按下去會壓扁、回彈，旁邊冒出爆炸、煙霧、火花和「砰！」這類擬聲字。
+- **給 AI 用**：每個元件都有「複製給 AI 的提示詞」按鈕，貼給 Claude Code、Cursor 這類工具，它就知道怎麼接進你的專案。
 
 ## 15 種風格
 
@@ -64,6 +66,38 @@
 ```
 
 每個元件怎麼寫，網站上都有範例可以直接複製。
+
+### 打擊特效（選用）
+
+多加一行 JS，再在 `<html>` 加上 `data-fx`：
+
+```html
+<html data-fx>
+<head>
+  <link rel="stylesheet" href="https://zhijian090195.github.io/library/assets/aicde-ui.css">
+  <script src="https://zhijian090195.github.io/library/assets/aicde-ui.js" defer></script>
+  <script src="https://zhijian090195.github.io/library/assets/aicde-fx.js" defer></script>
+</head>
+```
+
+- 只想讓某一塊有特效，就把 `data-fx` 加在那個容器上；`data-fx="off"` 可以在裡面再關掉。
+- 不要擬聲字：加 `data-fx-word="off"`。
+- 操作成功時呼叫 `AUIFX.done(按鈕)`，按鈕上會蓋一個打勾。
+- 使用者的系統開了「減少動態效果」時，特效會自動關掉。
+
+到網站的「打擊特效」頁可以直接玩：https://zhijian090195.github.io/library/#/fx
+
+也可以用 shadcn CLI 把檔案放進專案的 `public/aicde-ui/`：
+
+```bash
+npx shadcn add zhijian090195/library/aicde-ui
+npx shadcn add zhijian090195/library/fx
+```
+
+### 給 AI 用
+
+- [`llms.txt`](llms.txt)：整套元件庫的說明，寫給 AI 看的。網址：https://zhijian090195.github.io/library/llms.txt
+- 網站上每個元件頁和「打擊特效」頁的每張卡片，都有「複製給 AI 的提示詞」按鈕。
 
 ### React
 
@@ -120,7 +154,9 @@ AicdeButton(label: '儲存', variant: AicdeButtonVariant.primary, onPressed: sav
 
 ```
 index.html     網站首頁
-assets/        網頁版元件（aicde-ui.css、aicde-ui.js）和網站內容
+assets/        網頁版元件（aicde-ui.css、aicde-ui.js、打擊特效 aicde-fx.js）和網站內容
+llms.txt       寫給 AI 看的說明
+registry.json  shadcn CLI 用的清單
 react/         React 版
 flutter/       Flutter 版
 tokens/        顏色、圓角這些設定，三個版本共用

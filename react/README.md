@@ -87,6 +87,38 @@ import { ThemeProvider } from 'aicde-ui';
 | `finance` | 金融：資訊密集、數字對齊 | 交易平台、報表 |
 | `editorial` | 編輯：雜誌感、襯線標題 | 媒體、部落格 |
 
+
+## 打擊特效（選用）
+
+讓按鈕、開關、勾選框這些元件一按下去就壓扁、回彈，旁邊冒出爆炸、煙霧、火花和「砰！」這類擬聲字。
+
+```tsx
+// 入口檔案引入一次
+import 'aicde-ui/fx';
+
+// 包在 ThemeProvider 裡，加上 fx
+<ThemeProvider fx>
+  <App />
+</ThemeProvider>
+```
+
+操作成功時，在按鈕上蓋一個打勾：
+
+```tsx
+import { fxDone } from 'aicde-ui/fx';
+
+<Button variant="primary" onClick={async e => {
+  const el = e.currentTarget;
+  await save();
+  fxDone(el);   // 成功了才呼叫
+}}>儲存</Button>
+```
+
+- `<ThemeProvider fx={false}>` 可以在已開啟的範圍裡關掉一塊；不要擬聲字就在外層加 `data-fx-word="off"`。
+- 有特效的元件：Button、Switch、Checkbox、Radio、Rating、Slider、Input、Tabs、Progress、toast。
+- 使用者的系統開了「減少動態效果」時，特效會自動關掉。在伺服器端（SSR）載入時什麼都不做。
+- 線上試玩：https://zhijian090195.github.io/library/#/fx
+
 ## 有哪些元件
 
 | 類別 | 元件 |
